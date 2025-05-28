@@ -65,12 +65,90 @@
     font-size: 0.95rem;
     border-top: 1px solid #eee;
   }
+  .network-graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin: 2.5rem 0 1.5rem 0;
+    position: relative;
+  }
+  .network-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 120px;
+  }
+  .network-node img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0a66c2;
+    margin-bottom: 0.5rem;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(10,102,194,0.08);
+    transition: transform 0.2s;
+  }
+  .network-node img:hover {
+    transform: scale(1.08);
+    border-color: #004182;
+  }
+  .network-node-title {
+    font-size: 1rem;
+    color: #222;
+    margin-top: 0.2rem;
+  }
+  /* Simple lines between nodes (for 3 nodes) */
+  .network-graph::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60%;
+    height: 2px;
+    background: #cce0f6;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  @media (max-width: 600px) {
+    .network-graph {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .network-graph::before {
+      width: 2px;
+      height: 60%;
+    }
+  }
 </style>
 
 <div class="container">
   <h1 class="title">House of Smimin</h1>
   <div class="subtitle">Simm, sobbers & lude4</div>
   <img class="image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Haus Bild" />
+
+  <!-- Network Graph Navigation -->
+  <div class="network-graph">
+    <a class="network-node" href="/about">
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=200&q=80" alt="About" />
+      <div class="network-node-title">About</div>
+    </a>
+    <a class="network-node" href="/gallery">
+      <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=200&q=80" alt="Gallery" />
+      <div class="network-node-title">Gallery</div>
+    </a>
+    <a class="network-node" href="/contact">
+      <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80" alt="Contact" />
+      <div class="network-node-title">Contact</div>
+    </a>
+  </div>
+
   <div class="social-links">
     <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
       <!-- LinkedIn SVG icon -->
