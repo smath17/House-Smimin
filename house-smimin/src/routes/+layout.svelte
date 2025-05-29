@@ -15,6 +15,12 @@
 		} else {
 			document.documentElement.removeAttribute('data-theme');
 		}
+
+		// Play sound
+		if (typeof Audio !== "undefined") {
+			const audio = new Audio('/sounds/light-switch.mp3');
+			audio.play().catch(error => console.error("Error playing sound:", error));
+		}
 	}
 
 	function handleMouseMove(event: MouseEvent) {
@@ -71,19 +77,36 @@
     color: white;
   }
 
+  /* Base style for the dark mode button */
   .main-nav button {
-    background-color: #0a66c2;
-    color: white;
-    border: none;
+    background-color: #f8f9fa; /* Match nav background */
+    color: #0a66c2; /* Link color */
+    border: 1px solid #0a66c2; /* Border to differentiate */
     padding: 0.5rem 0.75rem;
     border-radius: 4px;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 
-  .main-nav button:hover {
-    background-color: #0855a0;
+  /* Hover style for the button when not active */
+  .main-nav button:not(.active):hover {
+    background-color: #e9ecef; /* Slightly darker nav background */
+    color: #0056b3; /* Darker blue */
+    border-color: #0056b3;
+  }
+
+  /* Style for the button when dark mode is active */
+  .main-nav button.active {
+    background-color: #0a66c2; /* Highlighted background */
+    color: white;
+    border-color: #0a66c2;
+  }
+
+  /* Hover style for the button when active */
+  .main-nav button.active:hover {
+    background-color: #0855a0; /* Darker highlighted background */
+    border-color: #0855a0;
   }
 
   .content-area {
@@ -135,7 +158,7 @@
     <a href="/gallery" class:active={$page.url.pathname === '/gallery'}>Gallery</a>
     <a href="/projects" class:active={$page.url.pathname === '/projects'}>Projects</a>
     <a href="/contact" class:active={$page.url.pathname === '/contact'}>Contact</a>
-    <button onclick={toggleDarkMode}>
+    <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
   </nav>
