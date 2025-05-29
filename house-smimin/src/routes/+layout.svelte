@@ -102,7 +102,7 @@
     height: 100vh;
     background: radial-gradient(
       circle 150px at var(--mouseX) var(--mouseY),
-      transparent 0%,
+      transparent 0%, /* Percentage from circe center that is not affected by gradient */
       rgba(0, 0, 0, 0.95) 100%
     );
     pointer-events: none; /* Allows clicks to pass through */
@@ -135,7 +135,7 @@
     <a href="/gallery" class:active={$page.url.pathname === '/gallery'}>Gallery</a>
     <a href="/projects" class:active={$page.url.pathname === '/projects'}>Projects</a>
     <a href="/contact" class:active={$page.url.pathname === '/contact'}>Contact</a>
-    <button on:click={toggleDarkMode}>
+    <button onclick={toggleDarkMode}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
   </nav>
