@@ -1,8 +1,35 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
-	
+	import { onMount } from 'svelte';
+
 	let { children } = $props();
+	let darkModeActive = $state(false);
+	let mouseX = $state(0);
+	let mouseY = $state(0);
+
+	function toggleDarkMode() {
+		darkModeActive = !darkModeActive;
+		if (darkModeActive) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+		} else {
+			document.documentElement.removeAttribute('data-theme');
+		}
+	}
+
+	function handleMouseMove(event: MouseEvent) {
+		mouseX = event.clientX;
+		mouseY = event.clientY;
+	}
+
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			window.addEventListener('mousemove', handleMouseMove);
+			return () => {
+				window.removeEventListener('mousemove', handleMouseMove);
+			};
+		}
+	});
 </script>
 
 <style>
@@ -44,12 +71,42 @@
     color: white;
   }
 
+  .main-nav button {
+    background-color: #0a66c2;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .main-nav button:hover {
+    background-color: #0855a0;
+  }
+
   .content-area {
     flex-grow: 1;
     width: 100%;
     /* Padding/margins for content will be handled by individual pages or a nested layout */
     /* If content areas should have a different background (e.g., white cards), 
        that should be styled within the page components or here if globally desired. */
+  }
+
+  .dark-mode-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(
+      circle 150px at var(--mouseX) var(--mouseY),
+      transparent 0%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 9999; /* Ensure it's on top */
   }
   
   @media (max-width: 600px) {
@@ -65,13 +122,22 @@
   }
 </style>
 
-<div class="layout-container">
+<div class="layout-container" class:dark-mode={darkModeActive}>
+  {#if darkModeActive}
+    <div
+      class="dark-mode-spotlight"
+      style="--mouseX:{mouseX}px; --mouseY:{mouseY}px;"
+    ></div>
+  {/if}
   <nav class="main-nav">
     <a href="/" class:active={$page.url.pathname === '/'}>Home</a>
     <a href="/about" class:active={$page.url.pathname === '/about'}>About</a>
     <a href="/gallery" class:active={$page.url.pathname === '/gallery'}>Gallery</a>
     <a href="/projects" class:active={$page.url.pathname === '/projects'}>Projects</a>
     <a href="/contact" class:active={$page.url.pathname === '/contact'}>Contact</a>
+    <button on:click={toggleDarkMode}>
+      {darkModeActive ? 'Light Mode' : 'Dark Mode'}
+    </button>
   </nav>
   <main class="content-area">
     {@render children()}
