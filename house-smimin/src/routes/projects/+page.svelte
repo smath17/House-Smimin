@@ -12,7 +12,7 @@
       id: 2,
       title: "Garden Design",
       description: "Landscaping project featuring native plants and sustainable water features.",
-      image: "https://images.unsplash.com/photo-1558293842-c0fd3db1f627?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80",
       alt: "Beautiful garden design"
     },
     {
@@ -26,7 +26,7 @@
       id: 4,
       title: "Smart Home Integration",
       description: "Complete home automation system with voice control and energy-efficient features.",
-      image: "https://images.unsplash.com/photo-1558002038-1055e5e0fda7?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80",
       alt: "Smart home devices"
     }
   ];

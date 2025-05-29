@@ -54,6 +54,12 @@
     max-width: 100%;
     object-fit: cover;
   }
+  .image-credit {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: -1.5rem; /* Adjust to pull it closer to the image */
+    margin-bottom: 2rem; /* Keep original bottom margin */
+  }
   .social-links {
     margin-top: 1.5rem;
     display: flex;
@@ -71,9 +77,8 @@
     padding: 1rem 0 0 0;
     width: 100%;
     text-align: center;
-    color: #888;
+    color: #555555;
     font-size: 0.95rem;
-    border-top: 1px solid #eee;
   }
   /* Network Graph CSS removed */
 
@@ -94,8 +99,9 @@
 
   <!-- <div class="content-wrapper"> --> <!-- This div is no longer needed -->
     <h1 class="title">House of Smimin</h1>
-    <div class="subtitle">Simm, sobbers & lude4</div>
-    <img class="image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Haus Bild" />
+    <div class="subtitle">Simse, Sobbers & Simsalabim</div>
+    <img class="image" src="simp.png" alt="Simon bonk" />
+    <p class="image-credit">Image by Mikkel Mathiasen</p>
 
     <div class="social-links">
       <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -106,7 +112,7 @@
       </a>
     </div>
     <footer class="footer">
-      &copy; {new Date().getFullYear()} Smimin &ndash; Contact: <a href="mailto:smath@outlook.dk">smath@outlook.dk</a>
+      &copy; {new Date().getFullYear()} Simon Mathiasen &ndash; Contact: <a href="mailto:smath@outlook.dk">smath@outlook.dk</a>
     </footer>
   <!-- </div> -->
 </div>
