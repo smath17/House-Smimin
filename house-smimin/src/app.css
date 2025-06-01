@@ -1,1 +1,6 @@
 @import 'tailwindcss';
+
+:global(html) {
+    overflow-y: scroll; /* Fallback for older browsers or if content actually overflows */
+    scrollbar-gutter: stable; /* Reserves space for the scrollbar gutter, preventing layout shifts */
+}
