@@ -1,6 +1,6 @@
 <script lang="ts">
-	import '../app.css';
-	import { page } from '$app/stores';
+  import '../app.css';
+	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 
 	let { children } = $props();
@@ -38,7 +38,10 @@
 	});
 </script>
 
+<!-- svelte-ignore css_unused_selector -->
 <style>
+  @import '../app.css';
+
   .layout-container {
     display: flex;
     flex-direction: column;
@@ -153,11 +156,11 @@
     ></div>
   {/if}
   <nav class="main-nav">
-    <a href="/" class:active={$page.url.pathname === '/'}>Home</a>
-    <a href="/about" class:active={$page.url.pathname === '/about'}>About</a>
-    <a href="/gallery" class:active={$page.url.pathname === '/gallery'}>Gallery</a>
-    <a href="/projects" class:active={$page.url.pathname === '/projects'}>Projects</a>
-    <a href="/contact" class:active={$page.url.pathname === '/contact'}>Contact</a>
+    <a href="/" class:active={page.url.pathname === '/'}>Home</a>
+    <a href="/about" class:active={page.url.pathname === '/about'}>About</a>
+    <a href="/gallery" class:active={page.url.pathname === '/gallery'}>Gallery</a>
+    <a href="/projects" class:active={page.url.pathname === '/projects'}>Projects</a>
+    <a href="/contact" class:active={page.url.pathname === '/contact'}>Contact</a>
     <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
