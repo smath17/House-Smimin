@@ -1,35 +1,5 @@
-<script>
-  // Sample project data - replace with real data later
-  const projects = [
-    {
-      id: 1,
-      title: "House Renovation",
-      description: "Complete renovation of the kitchen and living areas with modern design elements.",
-      image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80",
-      alt: "Modern kitchen renovation"
-    },
-    {
-      id: 2,
-      title: "Garden Design",
-      description: "Landscaping project featuring native plants and sustainable water features.",
-      image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80",
-      alt: "Beautiful garden design"
-    },
-    {
-      id: 3,
-      title: "Solar Panel Installation",
-      description: "Renewable energy upgrade with rooftop solar panels for sustainable power generation.",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80",
-      alt: "Solar panel installation"
-    },
-    {
-      id: 4,
-      title: "Smart Home Integration",
-      description: "Complete home automation system with voice control and energy-efficient features.",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80",
-      alt: "Smart home devices"
-    }
-  ];
+<script lang="ts">
+  	let { data } = $props();
 </script>
 
 <style>
@@ -71,6 +41,12 @@
     flex-direction: column;
     gap: 2.5rem;
   }
+
+  .project-link-wrapper { /* Added for the anchor tag wrapper */
+    display: block; /* Makes the link take up the full card space */
+    text-decoration: none; /* Removes underline from the link */
+    color: inherit; /* Ensures text color is not changed by the link */
+  }
   
   .project-card {
     background: white;
@@ -93,12 +69,28 @@
   
   .project-details {
     padding: 1.5rem;
+    position: relative; /* Added for positioning context */
   }
   
+  .project-date { /* Added for project date */
+    position: absolute;
+    top: 0.75rem; 
+    right: 1.5rem;
+    font-size: 0.8rem;
+    color: #777;
+  }
+
   .project-title {
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
     color: #0a66c2;
+  }
+
+  h3.project-title {
+    font-size: 1.1rem; /* Smaller than h2 */
+    color: #222; /* Black color */
+    margin-top: -0.5rem; /* Adjust spacing if needed */
+    margin-bottom: 0.75rem;
   }
   
   .project-description {
@@ -149,8 +141,16 @@
     }
     
     /* Alternate layout for even-numbered projects */
-    .project-card:nth-child(even) {
+    /* Apply to .project-card if its wrapper (a) is even, or if the card itself (article) is even */
+    .project-list > a.project-link-wrapper:nth-child(even) .project-card,
+    .project-list > article.project-card:nth-child(even) {
       flex-direction: row-reverse;
+    }
+
+    /* Apply to .project-date if it's within any even child of .project-list */
+    .project-list > *:nth-child(even) .project-date {
+      right: auto; /* Unset the default right positioning */
+      left: 1.5rem; /* Position to the left */
     }
   }
   
@@ -167,24 +167,58 @@
 
 <div class="container">
   <header>
-    <h1 class="title">Our Projects</h1>
-    <p class="subtitle">Explore our latest work and creative endeavors at House of Smimin</p>
+    <h1 class="title">My Projects</h1>
+    <p class="subtitle">Browse what happens when: Ambition + Passion > Competence</p>
   </header>
   
   <div class="project-list">
-    {#each projects as project (project.id)}
-      <article class="project-card">
-        <img 
-          class="project-image" 
-          src={project.image} 
-          alt={project.alt}
-          loading="lazy"
-        />
-        <div class="project-details">
-          <h2 class="project-title">{project.title}</h2>
-          <p class="project-description">{project.description}</p>
-        </div>
-      </article>
+    {#each data.projects as project (project.id)}
+      {#if project.githubLink}
+        <a 
+          href={project.githubLink} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="project-link-wrapper"
+        >
+          <article class="project-card">
+            <img 
+              class="project-image" 
+              src={project.image} 
+              alt={"image of " + project.title}
+              loading="lazy"
+            />
+            <div class="project-details">
+              {#if project.date}
+                <p class="project-date">{project.date}</p>
+              {/if}
+              <h2 class="project-title">{project.title}</h2>          
+              {#if project.name}
+                <h3 class="project-title">{project.name}</h3>
+              {/if}
+              <p class="project-description" style="white-space: pre-line;">{project.description}</p>
+            </div>
+          </article>
+        </a>
+      {:else}
+        <article class="project-card">
+          <img 
+            class="project-image" 
+            src={project.image} 
+            alt={"image of " + project.title}
+            loading="lazy"
+          />
+          <div class="project-details">
+            {#if project.date}
+              <p class="project-date">{project.date}</p>
+            {/if}
+            <h2 class="project-title">{project.title}</h2>          
+            {#if project.name}
+              <h3 class="project-title">{project.name}</h3>
+            {/if}
+            <p class="project-description" style="white-space: pre-line;">{project.description}</p>
+          </div>
+        </article>
+      {/if}
     {/each}
   </div>
   
