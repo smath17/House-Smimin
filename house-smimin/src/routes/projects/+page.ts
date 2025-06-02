@@ -14,7 +14,7 @@ export const load = () => {
             id: 1,
             name: null,
             title: 'Tour Planning',
-            description: 'Attempt to create efficient routes within a time frame, using an assortment of API\'s and local OpenStreetMap.',
+            description: 'Attempt to create efficient routes within a time frame, using a local OpenStreetMap. Also jumping hoops to avoid paying for API\'s',
             image: 'Vibocold-p3.png',
             githubLink: 'https://github.com/smath17/Tour-planning-P3',
             date: 'Autumn 2018'
