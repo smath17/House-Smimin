@@ -1,35 +1,36 @@
-<script>
+<script lang="ts">
+  	let { data } = $props();
   // Sample project data - replace with real data later
-  const projects = [
-    {
-      id: 1,
-      title: "House Renovation",
-      description: "Complete renovation of the kitchen and living areas with modern design elements.",
-      image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80",
-      alt: "Modern kitchen renovation"
-    },
-    {
-      id: 2,
-      title: "Garden Design",
-      description: "Landscaping project featuring native plants and sustainable water features.",
-      image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80",
-      alt: "Beautiful garden design"
-    },
-    {
-      id: 3,
-      title: "Solar Panel Installation",
-      description: "Renewable energy upgrade with rooftop solar panels for sustainable power generation.",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80",
-      alt: "Solar panel installation"
-    },
-    {
-      id: 4,
-      title: "Smart Home Integration",
-      description: "Complete home automation system with voice control and energy-efficient features.",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80",
-      alt: "Smart home devices"
-    }
-  ];
+  // const projects = [
+  //   {
+  //     id: 1,
+  //     title: "House Renovation",
+  //     description: "Complete renovation of the kitchen and living areas with modern design elements.",
+  //     image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80",
+  //     alt: "Modern kitchen renovation"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Garden Design",
+  //     description: "Landscaping project featuring native plants and sustainable water features.",
+  //     image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80",
+  //     alt: "Beautiful garden design"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Solar Panel Installation",
+  //     description: "Renewable energy upgrade with rooftop solar panels for sustainable power generation.",
+  //     image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80",
+  //     alt: "Solar panel installation"
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Smart Home Integration",
+  //     description: "Complete home automation system with voice control and energy-efficient features.",
+  //     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80",
+  //     alt: "Smart home devices"
+  //   }
+  // ];
 </script>
 
 <style>
@@ -172,12 +173,12 @@
   </header>
   
   <div class="project-list">
-    {#each projects as project (project.id)}
+    {#each data.projects as project (project.id)}
       <article class="project-card">
         <img 
           class="project-image" 
           src={project.image} 
-          alt={project.alt}
+          alt={"image of " + project.title}
           loading="lazy"
         />
         <div class="project-details">
