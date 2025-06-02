@@ -41,6 +41,12 @@
     flex-direction: column;
     gap: 2.5rem;
   }
+
+  .project-link-wrapper { /* Added for the anchor tag wrapper */
+    display: block; /* Makes the link take up the full card space */
+    text-decoration: none; /* Removes underline from the link */
+    color: inherit; /* Ensures text color is not changed by the link */
+  }
   
   .project-card {
     background: white;
@@ -135,11 +141,14 @@
     }
     
     /* Alternate layout for even-numbered projects */
-    .project-card:nth-child(even) {
+    /* Apply to .project-card if its wrapper (a) is even, or if the card itself (article) is even */
+    .project-list > a.project-link-wrapper:nth-child(even) .project-card,
+    .project-list > article.project-card:nth-child(even) {
       flex-direction: row-reverse;
     }
 
-    .project-card:nth-child(even) .project-date {
+    /* Apply to .project-date if it's within any even child of .project-list */
+    .project-list > *:nth-child(even) .project-date {
       right: auto; /* Unset the default right positioning */
       left: 1.5rem; /* Position to the left */
     }
@@ -164,24 +173,52 @@
   
   <div class="project-list">
     {#each data.projects as project (project.id)}
-      <article class="project-card">
-        <img 
-          class="project-image" 
-          src={project.image} 
-          alt={"image of " + project.title}
-          loading="lazy"
-        />
-        <div class="project-details">
-          {#if project.date}
-            <p class="project-date">{project.date}</p>
-          {/if}
-          <h2 class="project-title">{project.title}</h2>          
-          {#if project.name}
-            <h3 class="project-title">{project.name}</h3>
-          {/if}
-          <p class="project-description">{project.description}</p>
-        </div>
-      </article>
+      {#if project.githubLink}
+        <a 
+          href={project.githubLink} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="project-link-wrapper"
+        >
+          <article class="project-card">
+            <img 
+              class="project-image" 
+              src={project.image} 
+              alt={"image of " + project.title}
+              loading="lazy"
+            />
+            <div class="project-details">
+              {#if project.date}
+                <p class="project-date">{project.date}</p>
+              {/if}
+              <h2 class="project-title">{project.title}</h2>          
+              {#if project.name}
+                <h3 class="project-title">{project.name}</h3>
+              {/if}
+              <p class="project-description" style="white-space: pre-line;">{project.description}</p>
+            </div>
+          </article>
+        </a>
+      {:else}
+        <article class="project-card">
+          <img 
+            class="project-image" 
+            src={project.image} 
+            alt={"image of " + project.title}
+            loading="lazy"
+          />
+          <div class="project-details">
+            {#if project.date}
+              <p class="project-date">{project.date}</p>
+            {/if}
+            <h2 class="project-title">{project.title}</h2>          
+            {#if project.name}
+              <h3 class="project-title">{project.name}</h3>
+            {/if}
+            <p class="project-description" style="white-space: pre-line;">{project.description}</p>
+          </div>
+        </article>
+      {/if}
     {/each}
   </div>
   
