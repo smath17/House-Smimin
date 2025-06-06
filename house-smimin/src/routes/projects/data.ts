@@ -5,9 +5,19 @@
             title: 'Programming and Problem Solving',
             description: 'Simulation of disease outbreak and the effects of precautions. 50% reading up on influenza, 50% definetly not creating a game.',
             goal: 'Learn Java and object-oriented programming',
+            images: [
+
+            ],
             image: 'P2_Zombe.png',
             githubLink: 'https://github.com/HTML-Earth/P2-Simulering',
-            date: 'Spring 2018'
+            date: 'Spring 2018',
+            facts: {
+                'Languages': 'Java',
+                'Tools': 'IntelliJ IDEA, GitHub',
+                'Concepts': 'Object-Oriented Programming, Simulation, User Interface',
+                'Grade': 'F'
+            },
+            text: ""
         },
         {
             id: 1,
