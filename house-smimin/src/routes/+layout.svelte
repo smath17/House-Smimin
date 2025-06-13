@@ -156,11 +156,10 @@
     ></div>
   {/if}
   <nav class="main-nav">
-    <a href="/" class:active={page.url.pathname === '/'}>Home</a>
-    <a href="/about" class:active={page.url.pathname === '/about'}>About</a>
-    <a href="/gallery" class:active={page.url.pathname === '/gallery'}>Gallery</a>
-    <a href="/projects" class:active={page.url.pathname === '/projects'}>Projects</a>
-    <a href="/contact" class:active={page.url.pathname === '/contact'}>Contact</a>
+    <a href="/" class:active={page.url.pathname === '/'}>Hjem</a>
+    <a href="/simon" class:active={page.url.pathname === '/about'}>Simon</a>
+    <a href="/projects" class:active={page.url.pathname === '/projects'}>Projekter</a>
+    <a href="/404" class:active={page.url.pathname === '/contact'}>4̷̮͉̔̏͜͠0̸̱̆͊̓̎͌͌͊̚4̸̡͍͍̝̰͔̣̿̋̅̃̐̈̓̑</a>
     <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
