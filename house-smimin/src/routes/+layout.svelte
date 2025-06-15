@@ -7,6 +7,7 @@
 	let darkModeActive = $state(false);
 	let mouseX = $state(0);
 	let mouseY = $state(0);
+	let audio: HTMLAudioElement | null = null;
 
 	function toggleDarkMode() {
 		darkModeActive = !darkModeActive;
@@ -17,8 +18,8 @@
 		}
 
 		// Play sound
-		if (typeof Audio !== "undefined") {
-			const audio = new Audio('/sounds/light-switch.mp3');
+		if (audio) {
+			audio.currentTime = 0; // Rewind to start if playing again
 			audio.play().catch(error => console.error("Error playing sound:", error));
 		}
 	}
@@ -31,6 +32,12 @@
 	onMount(() => {
 		if (typeof window !== 'undefined') {
 			window.addEventListener('mousemove', handleMouseMove);
+			
+			if (typeof Audio !== "undefined") {
+				audio = new Audio('/sounds/light-switch.mp3');
+				audio.load(); // Some browsers might need this to explicitly start loading
+			}
+
 			return () => {
 				window.removeEventListener('mousemove', handleMouseMove);
 			};
