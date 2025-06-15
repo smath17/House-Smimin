@@ -1,18 +1,4 @@
 <style>
-  /* html, body, #svelte {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    min-width: 100vw;
-    box-sizing: border-box;
-  } */
   .container {
     display: flex;
     flex-direction: column;
@@ -30,12 +16,6 @@
     width: 100%;
     max-width: 700px; /* Max width for the main content */
   }
-
-  /* .main-nav CSS removed */
-  /* .main-nav a CSS removed */
-  /* .main-nav a:hover, .main-nav a.active CSS removed */
-  
-  /* .content-wrapper removed, .container now serves this purpose */
 
   .title {
     font-size: clamp(2rem, 5vw, 2.5rem); /* Responsive font size */
@@ -94,7 +74,6 @@
       padding-right: 1rem;
       padding-bottom: 1rem;
     }
-    /* Network graph media query removed */
   }
 </style>
 
@@ -143,6 +122,6 @@
       </a>
     </div>
     <footer class="footer">
-      &copy; {new Date().getFullYear()} Simon Mathiasen &ndash; Contact: <a href="mailto:smath@outlook.dk?subject=Inquiry%20from%20Website">smath@outlook.dk</a>
+      &copy; {new Date().getFullYear()} Simon Mathiasen &ndash; Kontakt: <a href="mailto:smath@outlook.dk?subject=House%20of%20Smimin">smath@outlook.dk</a>
     </footer>
 </div>

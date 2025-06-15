@@ -166,7 +166,7 @@
     <a href="/" class:active={page.url.pathname === '/'}>Hjem</a>
     <a href="/simon" class:active={page.url.pathname === '/about'}>Simon</a>
     <a href="/projects" class:active={page.url.pathname === '/projects'}>Projekter</a>
-    <a href="/404" class:active={page.url.pathname === '/contact'}>4̷̮͉̔̏͜͠0̸̱̆͊̓̎͌͌͊̚4̸̡͍͍̝̰͔̣̿̋̅̃̐̈̓̑</a>
+    <a href="/404" class:active={page.url.pathname === '/404'}>4̷̮͉̔̏͜͠0̸̱̆͊̓̎͌͌͊̚4̸̡͍͍̝̰͔̣̿̋̅̃̐̈̓̑</a>
     <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
