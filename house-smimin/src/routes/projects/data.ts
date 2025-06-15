@@ -3,8 +3,8 @@ import { text } from "@sveltejs/kit";
 export const projects = [
     {
         id: "p2-zombe",
-        name: "Zombe, inspired by the late Harambe",
-        title: "Programming and Problem Solving",
+        name: "Aka. Zombe, en blanding af Zombie og Harambe",
+        title: "Simulering af sydgomsudbrud",
         description: "Simulation of disease outbreak and the effects of precautions. 50% reading up on influenza, 50% definetly not creating a game.",
         goal: "Learn Java and object-oriented programming",
         images: [
@@ -30,7 +30,7 @@ export const projects = [
         ],
         image: "images/projects/p2/P2_Zombe.webp",
         githubLink: "https://github.com/HTML-Earth/P2-Simulering",
-        date: "Spring 2018",
+        date: "Forår 2018",
         facts: {
             "Languages": "Java",
             "Tools": "IntelliJ IDEA, GitHub",
@@ -41,21 +41,21 @@ export const projects = [
     },
     {
         id: "p3-vibocold",
-        name: null,
-        title: "Tour Planning",
-        description: "Attempt to create efficient routes within a time frame, using a local OpenStreetMap. Also jumping hoops to avoid paying for API\"s",
+        name: "I samarbejde med Vibocold",
+        title: "Ruteplanlægning og -optimering",
+        description: "Program till at lave effektive ruter, fremfor at gøre det i hånden, udført ved brug af lokalt OpenStreetMap.",
         image: "images/projects/p3/vibocold-p3.webp",
         githubLink: "https://github.com/smath17/Tour-planning-P3",
-        date: "Autumn 2018"
+        date: "Efterår 2018"
     },
     {
         id: "p5-robot",
-        name: "Agent Mode > Machine Learning",
-        title: "Feature-Based Reinforcement Learning Using Unity",
-        description: "Learned a lot about machine learning. Not enough to execute.",
+        name: "Hund gør som der bliver sagt: Hund får godbid",
+        title: "Reinforcement læring i Unity",
+        description: "Lærte meget omkring maskin læring (xd). Ikke nok til at eksekvere.",
         image: "images/projects/p5/P5-Robot-env.webp",
         githubLink: "https://github.com/HTML-Earth/P5",
-        date: "Autumn 2019"
+        date: "Efterår 2019"
     }
 ];
 

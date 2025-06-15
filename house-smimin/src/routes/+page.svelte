@@ -79,8 +79,8 @@
 
 <div class="container">
 
-    <h1 class="title">House of Smimin</h1>
-    <div class="subtitle">Under construction</div>
+    <h1 class="title">Smimins Super Seje Side</h1>
+    <div class="subtitle">Et værested til features ingen har bedt om, og samle tidligere projekter.</div>
     <img class="image" src="images/simp.webp" alt="Simon bonk" />
     <p class="image-credit">Image by Mikkel Mathiasen</p>
 

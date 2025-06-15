@@ -28,13 +28,6 @@
     color: #222;
   }
   
-  .subtitle {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: #666;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
   .project-list {
     width: 100%;
     display: flex;
@@ -167,8 +160,8 @@
 
 <div class="container">
   <header>
-    <h1 class="title">My Projects</h1>
-    <p class="subtitle">Browse what happens when: Ambition + Passion > Competence</p>
+    <h1 class="title">Ambition + Kreativitet > Kompetencer</h1>
+    <!-- <p class="subtitle"></p> -->
   </header>
   
   <div class="project-list">
