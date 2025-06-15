@@ -28,7 +28,7 @@ export const projects = [
 
 
         ],
-        image: "P2_Zombe.webp",
+        image: "images/projects/p2/P2_Zombe.webp",
         githubLink: "https://github.com/HTML-Earth/P2-Simulering",
         date: "Spring 2018",
         facts: {
@@ -44,7 +44,7 @@ export const projects = [
         name: null,
         title: "Tour Planning",
         description: "Attempt to create efficient routes within a time frame, using a local OpenStreetMap. Also jumping hoops to avoid paying for API\"s",
-        image: "vibocold-p3.webp",
+        image: "images/projects/p3/vibocold-p3.webp",
         githubLink: "https://github.com/smath17/Tour-planning-P3",
         date: "Autumn 2018"
     },
@@ -53,7 +53,7 @@ export const projects = [
         name: "Agent Mode > Machine Learning",
         title: "Feature-Based Reinforcement Learning Using Unity",
         description: "Learned a lot about machine learning. Not enough to execute.",
-        image: "P5-Robot-env.webp",
+        image: "images/projects/p5/P5-Robot-env.webp",
         githubLink: "https://github.com/HTML-Earth/P5",
         date: "Autumn 2019"
     }

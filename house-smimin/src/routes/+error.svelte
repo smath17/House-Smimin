@@ -75,7 +75,7 @@
     {#if page.status === 404}
         <p>The page you're looking for doesn't exist.</p>
     {/if}
-    <img src="somon.png" alt="Error illustration" class="error-image"/>
+    <img src="images/somon.webp" alt="Error illustration" class="error-image"/>
 
     <div
         class="tape"
@@ -155,5 +155,4 @@
     }
 
     /* .error-image specific z-index is now handled above */
-    /* Remove .error-image from the grouped z-index rule if it was there */
 </style>

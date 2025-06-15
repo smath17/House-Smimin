@@ -81,7 +81,7 @@
 
     <h1 class="title">House of Smimin</h1>
     <div class="subtitle">Under construction</div>
-    <img class="image" src="/simp.webp" alt="Simon bonk" />
+    <img class="image" src="images/simp.webp" alt="Simon bonk" />
     <p class="image-credit">Image by Mikkel Mathiasen</p>
 
     <p class="curiosity-text">Til de nysgerrige 👇</p>
