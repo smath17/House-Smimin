@@ -59,7 +59,6 @@
   }
 
   @media (max-width: 600px) {
-    /* .main-nav media queries removed */
     .container { /* Adjusted padding for smaller screens */
       padding-top: 1.5px;
       padding-left: 1px;
