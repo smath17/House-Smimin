@@ -1,0 +1,179 @@
+<script lang="ts">
+  import { onMount } from 'svelte';
+
+  let mapContainer: HTMLDivElement;
+
+  onMount(() => {
+    // Initialize Google Map
+    if (typeof window !== 'undefined' && (window as any).google && (window as any).google.maps) {
+      initMap();
+    } else {
+      // Load Google Maps API if not already loaded
+      loadGoogleMapsAPI();
+    }
+  });
+
+  function loadGoogleMapsAPI() {
+    if (typeof window === 'undefined') return;
+    
+    // For demo purposes, you can replace 'YOUR_API_KEY' with a real Google Maps API key
+    const apiKey = 'YOUR_API_KEY';
+    
+    if (apiKey === 'YOUR_API_KEY') {
+      // Show a placeholder map if no API key is provided
+      showPlaceholderMap();
+      return;
+    }
+    
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+    
+    // Set up the callback function globally
+    (window as any).initMap = initMap;
+  }
+
+  function showPlaceholderMap() {
+    if (!mapContainer) return;
+    
+    mapContainer.innerHTML = `
+      <div style="
+        width: 100%; 
+        height: 100%; 
+        background: linear-gradient(45deg, #e8f5e8 25%, transparent 25%), 
+                    linear-gradient(-45deg, #e8f5e8 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #e8f5e8 75%), 
+                    linear-gradient(-45deg, transparent 75%, #e8f5e8 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #666;
+        font-family: Arial, sans-serif;
+      ">
+        <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; max-width: 300px;">
+          <h3 style="margin-top: 0; color: #333;">🗺️ Google Maps</h3>
+          <p style="margin-bottom: 1rem; font-size: 0.9rem;">For at se det rigtige kort, skal du tilføje din Google Maps API nøgle i koden.</p>
+          <div style="background: #f0f0f0; padding: 1rem; border-radius: 5px; font-size: 0.8rem;">
+            <strong>Lokation:</strong> København, Danmark<br>
+            <strong>Koordinater:</strong> 55.6761, 12.5683
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function initMap() {
+    if (typeof window === 'undefined' || !mapContainer) return;
+    
+    // Default location - you can change this to any location you prefer
+    const defaultLocation = { lat: 55.6761, lng: 12.5683 }; // Copenhagen, Denmark
+    
+    const map = new (window as any).google.maps.Map(mapContainer, {
+      zoom: 10,
+      center: defaultLocation,
+      mapTypeId: 'roadmap'
+    });
+
+    // Add a marker
+    new (window as any).google.maps.Marker({
+      position: defaultLocation,
+      map: map,
+      title: 'Copenhagen'
+    });
+  }
+</script>
+
+<svelte:head>
+  <title>Steder - Simon</title>
+</svelte:head>
+
+<div class="container">
+  <div class="header">
+    <h1>Steder</h1>
+    <p>Udforsk forskellige steder på kortet</p>
+  </div>
+  
+  <div class="map-container">
+    <div bind:this={mapContainer} class="map"></div>
+  </div>
+  
+  <div class="navigation">
+    <a href="/simon" class="back-link">← Tilbage til Simon</a>
+  </div>
+</div>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .header p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+  .map-container {
+    width: 100%;
+    height: 500px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .map {
+    width: 100%;
+    height: 100%;
+  }
+
+  .navigation {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .back-link:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+    
+    .map-container {
+      height: 400px;
+    }
+    
+    .header h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
