@@ -94,6 +94,18 @@
     display: inline-block;
   }
 
+  /* Create invisible bridge between menu item and dropdown */
+  .dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 1rem; /* Same as the gap */
+    background: transparent;
+    z-index: 999;
+  }
+
   /* Dropdown content */
   .dropdown-content {
     display: none;
