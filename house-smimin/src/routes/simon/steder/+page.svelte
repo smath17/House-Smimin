@@ -59,8 +59,8 @@
           <h3 style="margin-top: 0; color: #333;">🗺️ Google Maps</h3>
           <p style="margin-bottom: 1rem; font-size: 0.9rem;">For at se det rigtige kort, skal du tilføje din Google Maps API nøgle i koden.</p>
           <div style="background: #f0f0f0; padding: 1rem; border-radius: 5px; font-size: 0.8rem;">
-            <strong>Lokation:</strong> København, Danmark<br>
-            <strong>Koordinater:</strong> 55.6761, 12.5683
+            <strong>Lokation:</strong> Aalborg, Danmark<br>
+            <strong>Koordinater:</strong> 57.0488, 9.9217
           </div>
         </div>
       </div>
@@ -71,19 +71,53 @@
     if (typeof window === 'undefined' || !mapContainer) return;
     
     // Default location - you can change this to any location you prefer
-    const defaultLocation = { lat: 55.6761, lng: 12.5683 }; // Copenhagen, Denmark
-    
+    // const defaultLocation = { lat: 57.0488, lng: 9.9217 }; // Aalborg, Denmark
+    const centerLocation = { lat: 57.2686, lng: 9.9419 }; // Brønderslev, Denmark
+
     const map = new (window as any).google.maps.Map(mapContainer, {
       zoom: 10,
-      center: defaultLocation,
+      center: centerLocation,
       mapTypeId: 'roadmap'
     });
 
-    // Add a marker
+    // Create house icon
+    const houseIcon = {
+      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#2563eb">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      `),
+      scaledSize: new (window as any).google.maps.Size(32, 32),
+      anchor: new (window as any).google.maps.Point(16, 32)
+    };
+
+    // Add markers with house icons
     new (window as any).google.maps.Marker({
-      position: defaultLocation,
+      position: { lat: 57.466358598436514, lng: 9.803489716697532 },
       map: map,
-      title: 'Copenhagen'
+      title: 'ishavsvej',
+      icon: houseIcon
+    });
+
+    new (window as any).google.maps.Marker({
+      position: { lat: 57.45280311473584, lng: 9.989951748854576 },
+      map: map,
+      title: 'kærparken',
+      icon: houseIcon
+    });
+
+    new (window as any).google.maps.Marker({
+      position: { lat: 57.01925947426525, lng: 9.950380324970169 },
+      map: map,
+      title: 'scoresbysundvej',
+      icon: houseIcon
+    });
+
+    new (window as any).google.maps.Marker({
+      position: { lat: 56.19109362885152, lng: 9.55286008042207 },
+      map: map,
+      title: 'bredhøj',
+      icon: houseIcon
     });
   }
 </script>
@@ -95,7 +129,7 @@
 <div class="container">
   <div class="header">
     <h1>Steder</h1>
-    <p>Udforsk forskellige steder på kortet</p>
+    <p>Smap: En kort fortælling</p>
   </div>
   
   <div class="map-container">
@@ -132,7 +166,7 @@
 
   .map-container {
     width: 100%;
-    height: 500px;
+    height: 650px;
     border: 2px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
