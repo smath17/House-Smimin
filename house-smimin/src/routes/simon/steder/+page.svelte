@@ -16,10 +16,10 @@
   function loadGoogleMapsAPI() {
     if (typeof window === 'undefined') return;
     
-    // For demo purposes, you can replace 'YOUR_API_KEY' with a real Google Maps API key
-    const apiKey = 'YOUR_API_KEY';
+    // Get API key from environment variable
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     
-    if (apiKey === 'YOUR_API_KEY') {
+    if (!apiKey) {
       // Show a placeholder map if no API key is provided
       showPlaceholderMap();
       return;
@@ -46,7 +46,7 @@
                     linear-gradient(-45deg, #e8f5e8 25%, transparent 25%), 
                     linear-gradient(45deg, transparent 75%, #e8f5e8 75%), 
                     linear-gradient(-45deg, transparent 75%, #e8f5e8 75%);
-        background-size: 20px 20px;
+        background-size: 20px 20px;´´
         background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
         display: flex;
         align-items: center;
