@@ -72,10 +72,10 @@
     
     // Default location - you can change this to any location you prefer
     // const defaultLocation = { lat: 57.0488, lng: 9.9217 }; // Aalborg, Denmark
-    const centerLocation = { lat: 57.2686, lng: 9.9419 }; // Brønderslev, Denmark
+    const centerLocation = { lat: 57.31971035919828, lng: 10.03577420973761 };
 
     const map = new (window as any).google.maps.Map(mapContainer, {
-      zoom: 10,
+      zoom: 9,
       center: centerLocation,
       mapTypeId: 'roadmap'
     });
@@ -85,6 +85,18 @@
       url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#2563eb">
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      `),
+      scaledSize: new (window as any).google.maps.Size(32, 32),
+      anchor: new (window as any).google.maps.Point(16, 32)
+    };
+
+    // Create education icon (solid)
+    const educationIcon = {
+      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#000000">
+          <path d="M9.5 14C9.5 14 9 13.32 9 12.5c0-.82.5-1.5.5-1.5s.5.68.5 1.5c0 .82-.5 1.5-.5 1.5M12 2L2 7l10 5 10-5-10-5zM2 17v3h2v-3H2zm4 0v3h2v-3H6zm4 0v3h2v-3h-2zm4 0v3h2v-3h-2zm4 0v3h2v-3h-2z"/>
+          <path d="M12 13l-7-3.5v3l7 3.5 7-3.5v-3L12 13z"/>
         </svg>
       `),
       scaledSize: new (window as any).google.maps.Size(32, 32),
@@ -118,6 +130,46 @@
       map: map,
       title: 'bredhøj',
       icon: houseIcon
+    });
+
+    // Education marker
+    new (window as any).google.maps.Marker({
+      position: { lat: 57.46075238734557, lng: 9.869798523024473 },
+      map: map,
+      title: 'skallerup skole',
+      icon: educationIcon
+    });
+
+    // HPR marker
+    new (window as any).google.maps.Marker({
+      position: { lat: 57.456822380411, lng: 9.997013057952872 },
+      map: map,
+      title: 'HPR',
+      icon: educationIcon
+    });
+
+    // EUC Nord marker
+    new (window as any).google.maps.Marker({
+      position: { lat: 57.45854347143067, lng: 10.014588178479217 },
+      map: map,
+      title: 'EUC Nord',
+      icon: educationIcon
+    });
+
+    // AAU Basis marker
+    new (window as any).google.maps.Marker({
+      position: { lat: 57.053461265434066, lng: 9.91171798933991 },
+      map: map,
+      title: 'AAU Basis',
+      icon: educationIcon
+    });
+
+    // AAU Cassiopeia marker
+    new (window as any).google.maps.Marker({
+      position: { lat: 57.012339714420726, lng: 9.991050405703254 },
+      map: map,
+      title: 'AAU cassiopeia',
+      icon: educationIcon
     });
   }
 </script>
