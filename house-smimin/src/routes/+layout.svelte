@@ -1,28 +1,28 @@
 <script lang="ts">
   import '../app.css';
-	import { page } from '$app/state';
-	import { onMount } from 'svelte';
+  import { page } from '$app/state';
+  import { onMount } from 'svelte';
 
-	let { children } = $props();
-	let darkModeActive = $state(false);
-	let mouseX = $state(0);
-	let mouseY = $state(0);
-	let audio: HTMLAudioElement | null = null;
+  let { children } = $props();
+  let darkModeActive = $state(false);
+  let mouseX = $state(0);
+  let mouseY = $state(0);
+  let audio: HTMLAudioElement | null = null;
 
-	function toggleDarkMode() {
-		darkModeActive = !darkModeActive;
-		if (darkModeActive) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-		} else {
-			document.documentElement.removeAttribute('data-theme');
-		}
+  function toggleDarkMode() {
+    darkModeActive = !darkModeActive;
+    if (darkModeActive) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
 
-		// Play sound
-		if (audio) {
-			audio.currentTime = 0; // Rewind to start if playing again
-			audio.play().catch(error => console.error("Error playing sound:", error));
-		}
-	}
+    // Play sound
+    if (audio) {
+      audio.currentTime = 0; // Rewind to start if playing again
+      audio.play().catch(error => console.error("Error playing sound:", error));
+    }
+  }
 
 	function handleMouseMove(event: MouseEvent) {
 		mouseX = event.clientX;
@@ -79,12 +79,83 @@
     padding: 0.5rem 0.75rem;
     border-radius: 4px;
     transition: background-color 0.2s ease, color 0.2s ease;
+    position: relative;
   }
 
   .main-nav a:hover,
   .main-nav a.active {
     background-color: #0a66c2; 
     color: white;
+  }
+
+  /* Dropdown container */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Create invisible bridge between menu item and dropdown */
+  .dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 1rem; /* Same as the gap */
+    background: transparent;
+    z-index: 999;
+  }
+
+  /* Dropdown content */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1rem); /* Increased vertical spacing from 0.5rem to 1rem */
+    left: 50%;
+    transform: translateX(-50%); /* Center the dropdown horizontally */
+    background-color: white;
+    min-width: 100px;
+    width: auto; /* Changed from max-content to auto for better control */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Enhanced shadow for better depth */
+    border-radius: 6px; /* Slightly larger border radius */
+    z-index: 1000;
+    border: 1px solid #ddd;
+    padding: 0.25px 0; /* Add some padding to the container */
+  }
+
+  /* Show dropdown on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  /* Dropdown links */
+  .dropdown-content a {
+    color: #0a66c2;
+    padding: 0.5rem 0.75rem; /* Reduced padding for less whitespace */
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    border-radius: 0;
+    transition: background-color 0.2s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+    text-align: center; /* Center the text */
+  }
+
+  /* Hover effect for dropdown items */
+  .dropdown-content a:hover {
+    background-color: #f8f9fa;
+    color: #0a66c2;
+  }
+
+  /* First and last item border radius */
+  .dropdown-content a:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .dropdown-content a:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
 
   /* Base style for the dark mode button */
@@ -148,9 +219,28 @@
       gap: 0.5rem;
       padding: 1rem;
     }
-    .main-nav a {
+    .main-nav a, .dropdown {
       width: 100%;
       text-align: center;
+    }
+    
+    .dropdown-content {
+      position: static;
+      display: none;
+      box-shadow: none;
+      border: none;
+      background-color: #f8f9fa;
+      margin-top: 1rem; /* Increased spacing for mobile to match desktop */
+      transform: none; /* Remove transform for mobile */
+      left: auto; /* Reset left positioning */
+      width: 100%; /* Full width on mobile */
+      min-width: auto; /* Reset min-width */
+      border-radius: 6px; /* Maintain border radius */
+      padding: 0.5rem 0; /* Maintain padding */
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
   }
 </style>
@@ -164,9 +254,14 @@
   {/if}
   <nav class="main-nav">
     <a href="/" class:active={page.url.pathname === '/'}>Hjem</a>
-    <a href="/simon" class:active={page.url.pathname === '/simon'}>Simon</a>
+    <div class="dropdown">
+      <a href="/simon" class:active={page.url.pathname === '/simon' || page.url.pathname.startsWith('/simon/')}>Simon</a>
+      <div class="dropdown-content">
+        <a href="/simon/steder">🗺️ Steder</a>
+      </div>
+    </div>
     <a href="/projekter" class:active={page.url.pathname === '/projekter'}>Projekter</a>
-    <a href="/404" class:active={page.url.pathname === '/404'}>4̷̮͉̔̏͜͠0̸̱̆͊̓̎͌͌͊̚4̸̡͍͍̝̰͔̣̿̋̅̃̐̈̓̑</a>
+    <a href="/404" class:active={page.url.pathname === '/404'}>4̷̮͉̔̏͜͠0̸̱̆͊̓̎͌͌͊̚4̸̡͍͍̝̰͔̣̿̋̅̃̐̈̓̑</a>
     <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>

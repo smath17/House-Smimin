@@ -3,14 +3,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */ 
-    /* min-height: 100vh; */ /* Handled by layout */
-    /* min-height: 100dvh; */ /* Handled by layout */
     text-align: center;
-    padding-top: 2rem; /* Added padding to space content from nav */
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: 2rem; /* Keep bottom padding for footer spacing */
+    padding-top: 50px; /* Added padding to space content from nav */
+    /* padding-left: 30px; */
+    /* padding-right: 30px; */
+    padding-bottom: 50px; /* Keep bottom padding for footer spacing */
     box-sizing: border-box;
     margin: 0 auto;
     width: 100%;
@@ -29,7 +26,6 @@
   .image {
     width: min(300px, 90vw);
     border-radius: 12px;
-    margin-bottom: 2rem;
     height: auto;
     max-width: 100%;
     object-fit: cover;
@@ -37,12 +33,12 @@
   .image-credit {
     font-size: 0.8rem;
     color: #777;
-    margin-top: -1.5rem; /* Adjust to pull it closer to the image */
-    margin-bottom: 2rem; /* Keep original bottom margin */
+    margin-top: 0.8rem; /* Adjust to pull it closer to the image */
+    margin-bottom: 2rem;
   }
   .curiosity-text {
-    font-size: 1.25rem; /* Larger font size */
-    margin-bottom: 0.25rem; /* Reduced margin to space it from social links */
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
   }
   .social-links {
     margin-top: 0.5rem; /* Reduced margin-top */
@@ -51,10 +47,7 @@
     flex-wrap: wrap;
   }
   .social-links a {
-    margin: 0 0.5rem;
-    color: #0a66c2;
-    text-decoration: none;
-    font-size: 1.5rem;
+    margin: 0 5px;
   }
   .footer {
     margin-top: 2rem;
@@ -64,15 +57,13 @@
     color: #555555;
     font-size: 0.95rem;
   }
-  /* Network Graph CSS removed */
 
   @media (max-width: 600px) {
-    /* .main-nav media queries removed */
     .container { /* Adjusted padding for smaller screens */
-      padding-top: 1.5rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-bottom: 1rem;
+      padding-top: 1.5px;
+      padding-left: 1px;
+      padding-right: 1px;
+      padding-bottom: 1px;
     }
   }
 </style>
@@ -93,7 +84,7 @@
         </svg>
       </a>
       <a href="https://www.facebook.com/profile.php?id=100007921995524" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true">
           <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
         </svg>
       </a>
