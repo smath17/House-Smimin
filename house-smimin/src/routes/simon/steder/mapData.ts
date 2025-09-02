@@ -9,6 +9,26 @@ export interface MarkerData {
   infoContent: string;
 }
 
+// Info window styles
+export const infoWindowStyles = `
+  <style>
+    .info-container {
+      font-size: 16px;
+      padding: 0;
+      margin: 0;
+    }
+    .info-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin: 0;
+    }
+    .info-text {
+      font-size: 16px;
+      margin: 0;
+    }
+  </style>
+`;
+
 export const mapMarkers: MarkerData[] = [
   // House markers
   {
@@ -16,28 +36,35 @@ export const mapMarkers: MarkerData[] = [
     position: { lat: 57.466358598436514, lng: 9.803489716697532 },
     title: 'ishavsvej',
     type: 'house',
-    infoContent: '<div><h3>Ishavsvej</h3><p>Location: 57.466, 9.803</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h1 class="info-title">Ishavsvej 4</h1><h3 class="info-text">Født og opvokset i udkanten</h3><p>1998-2007</p></div>`
   },
   {
     id: 'kaerparken',
     position: { lat: 57.45280311473584, lng: 9.989951748854576 },
     title: 'kærparken',
     type: 'house',
-    infoContent: '<div><h3>Kærparken</h3><p>Location: 57.453, 9.990</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h1 class="info-title">Kærparken 9</h1><h3 class="info-text">Det mindste værelse</h3><p>Det hyggeligste hjem</p><p>~2007-2019</p></div>`
   },
   {
     id: 'scoresbysundvej',
     position: { lat: 57.01925947426525, lng: 9.950380324970169 },
     title: 'scoresbysundvej',
     type: 'house',
-    infoContent: '<div><h3>Scoresbysundvej</h3><p>Location: 57.019, 9.950</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h3 class="info-title">Scoresbysundvej 8, 1. 9</h3><p class="info-text">1-Værelses studiebolig</p><p class="info-text">~2019-2024</p></div>`
   },
   {
     id: 'bredhoj',
     position: { lat: 56.19109362885152, lng: 9.55286008042207 },
     title: 'bredhøj',
     type: 'house',
-    infoContent: '<div><h3>Bredhøj</h3><p>Location: 56.191, 9.553</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h3 class="info-title">Bredhøj 6 2. mf</h3><p class="info-text">101 kvm voksenfri* gamerhule</p><p class="info-text">2024-Nu</p></div>`
+  },
+  {
+    id: 'airbnb',
+    position: { lat: 56.17505710634319, lng: 9.77194150093056 },
+    title: 'Airbnb',
+    type: 'house',
+    infoContent: `${infoWindowStyles}<div class="info-container"><h3 class="info-title">Airbnb</h3><p class="info-text">3 måneder under prøveperiode som midtjyde tilflytter</p></div>`
   },
   // Education markers
   {
@@ -45,35 +72,35 @@ export const mapMarkers: MarkerData[] = [
     position: { lat: 57.46075238734557, lng: 9.869798523024473 },
     title: 'skallerup skole',
     type: 'education',
-    infoContent: '<div><h3>Skallerup Skole</h3><p>Educational Institution</p><p>Location: 57.461, 9.870</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h3 class="info-title">Skallerup Skole</h3><p class="info-text">Folkeskole 0-3. klasse</p><p class="info-text">Uanede mængder frihed</p></div>`
   },
   {
     id: 'hpr',
     position: { lat: 57.456822380411, lng: 9.997013057952872 },
     title: 'HPR',
     type: 'education',
-    infoContent: '<div><h3>HPR</h3><p>Educational Institution</p><p>Location: 57.457, 9.997</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h3 class="info-title">Hjørring Private Realskole</h3><p class="info-text">Folkeskole 4-9. klasse</p><p class="info-text">For de snobbede og rige</p><p class="info-text"></p></div>`
   },
   {
     id: 'eucNord',
     position: { lat: 57.45854347143067, lng: 10.014588178479217 },
     title: 'EUC Nord',
     type: 'education',
-    infoContent: '<div><h3>EUC Nord</h3><p>Educational Institution</p><p>Location: 57.459, 10.015</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h3 class="info-title">EUC Nord</h3><p class="info-text">HTX</p><p class="info-text">Begyndelsen på mit peak</p><p class="info-text">2015-2017</p></div>`
   },
   {
     id: 'aauBasis',
     position: { lat: 57.053461265434066, lng: 9.91171798933991 },
     title: 'AAU Basis',
     type: 'education',
-    infoContent: '<div><h3>AAU Basis</h3><p>Educational Institution</p><p>Location: 57.053, 9.912</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h3 class="info-title">AAU Basis</h3><p class="info-text">2 første semestre af Datalogi</div>`
   },
   {
     id: 'aauCassiopeia',
     position: { lat: 57.012339714420726, lng: 9.991050405703254 },
     title: 'AAU cassiopeia',
     type: 'education',
-    infoContent: '<div><h3>AAU Cassiopeia</h3><p>Educational Institution</p><p>Location: 57.012, 9.991</p></div>'
+    infoContent: `${infoWindowStyles}<div class="info-container"><h3 class="info-title">AAU Cassiopeia</h3><p class="info-text">House of Computer Science</p><p>Datalogi</p><p class="info-text">Peak hygge og memes</p><p class="info-text">2017-2023</p></div>`
   }
 ];
 
@@ -81,6 +108,41 @@ export const mapConfig = {
   center: { lat: 57.31971035919828, lng: 10.03577420973761 },
   zoom: 9,
   mapTypeId: 'roadmap'
+};
+
+// Map styles to hide Google's default points of interest
+export const mapStyles = {
+  hideGoogleMarkers: [
+    {
+      featureType: "poi.business",
+      stylers: [{ visibility: "off" }]
+    },
+    {
+      featureType: "poi.attraction",
+      stylers: [{ visibility: "off" }]
+    },
+    {
+      featureType: "poi.place_of_worship",
+      stylers: [{ visibility: "off" }]
+    },
+    {
+      featureType: "poi.sports_complex",
+      stylers: [{ visibility: "off" }]
+    },
+    {
+      featureType: "poi.medical",
+      stylers: [{ visibility: "off" }]
+    },
+    {
+      featureType: "poi.school",
+      stylers: [{ visibility: "off" }]
+    },
+    {
+      featureType: "transit.station",
+      stylers: [{ visibility: "off" }]
+    }
+  ],
+  showGoogleMarkers: [] // Empty array shows default styling
 };
 
 export const mapIcons = {

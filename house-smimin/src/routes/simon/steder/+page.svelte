@@ -1,8 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { mapMarkers, mapConfig, mapIcons, type MarkerData } from './mapData';
+  import { mapMarkers, mapConfig, mapIcons, mapStyles, type MarkerData } from './mapData';
 
   let mapContainer: HTMLDivElement;
+  let map: any;
+  let hideGoogleMarkers = true;
 
   onMount(() => {
     // Initialize Google Map
@@ -71,10 +73,11 @@
   function initMap() {
     if (typeof window === 'undefined' || !mapContainer) return;
     
-    const map = new (window as any).google.maps.Map(mapContainer, {
+    map = new (window as any).google.maps.Map(mapContainer, {
       zoom: mapConfig.zoom,
       center: mapConfig.center,
-      mapTypeId: mapConfig.mapTypeId
+      mapTypeId: mapConfig.mapTypeId,
+      styles: hideGoogleMarkers ? mapStyles.hideGoogleMarkers : mapStyles.showGoogleMarkers
     });
 
     // Create icon objects for Google Maps
@@ -108,6 +111,15 @@
       });
     });
   }
+
+  function toggleGoogleMarkers() {
+    hideGoogleMarkers = !hideGoogleMarkers;
+    if (map) {
+      map.setOptions({
+        styles: hideGoogleMarkers ? mapStyles.hideGoogleMarkers : mapStyles.showGoogleMarkers
+      });
+    }
+  }
 </script>
 
 <svelte:head>
@@ -121,6 +133,15 @@
   </div>
   
   <div class="map-container">
+    <div class="map-controls">
+      <button 
+        class="toggle-button" 
+        on:click={toggleGoogleMarkers}
+        title={hideGoogleMarkers ? "Vis Google markører" : "Skjul Google markører"}
+      >
+        {hideGoogleMarkers ? "📍 Vis Google markører" : "🚫 Skjul Google markører"}
+      </button>
+    </div>
     <div bind:this={mapContainer} class="map"></div>
   </div>
   
@@ -159,6 +180,38 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .map-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+  }
+
+  .toggle-button {
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+
+  .toggle-button:hover {
+    background-color: #f8f9fa;
+    border-color: #007bff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .toggle-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .map {
