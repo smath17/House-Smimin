@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { mapMarkers, mapConfig, mapIcons, type MarkerData } from './mapData';
 
   let mapContainer: HTMLDivElement;
 
@@ -70,106 +71,41 @@
   function initMap() {
     if (typeof window === 'undefined' || !mapContainer) return;
     
-    // Default location - you can change this to any location you prefer
-    // const defaultLocation = { lat: 57.0488, lng: 9.9217 }; // Aalborg, Denmark
-    const centerLocation = { lat: 57.31971035919828, lng: 10.03577420973761 };
-
     const map = new (window as any).google.maps.Map(mapContainer, {
-      zoom: 9,
-      center: centerLocation,
-      mapTypeId: 'roadmap'
+      zoom: mapConfig.zoom,
+      center: mapConfig.center,
+      mapTypeId: mapConfig.mapTypeId
     });
 
-    // Create house icon
+    // Create icon objects for Google Maps
     const houseIcon = {
-      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#2563eb">
-          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-        </svg>
-      `),
-      scaledSize: new (window as any).google.maps.Size(32, 32),
-      anchor: new (window as any).google.maps.Point(16, 32)
+      url: mapIcons.house.url,
+      scaledSize: new (window as any).google.maps.Size(mapIcons.house.scaledSize.width, mapIcons.house.scaledSize.height),
+      anchor: new (window as any).google.maps.Point(mapIcons.house.anchor.x, mapIcons.house.anchor.y)
     };
 
-    // Create education icon (solid)
     const educationIcon = {
-      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#000000">
-          <path d="M9.5 14C9.5 14 9 13.32 9 12.5c0-.82.5-1.5.5-1.5s.5.68.5 1.5c0 .82-.5 1.5-.5 1.5M12 2L2 7l10 5 10-5-10-5zM2 17v3h2v-3H2zm4 0v3h2v-3H6zm4 0v3h2v-3h-2zm4 0v3h2v-3h-2zm4 0v3h2v-3h-2z"/>
-          <path d="M12 13l-7-3.5v3l7 3.5 7-3.5v-3L12 13z"/>
-        </svg>
-      `),
-      scaledSize: new (window as any).google.maps.Size(32, 32),
-      anchor: new (window as any).google.maps.Point(16, 32)
+      url: mapIcons.education.url,
+      scaledSize: new (window as any).google.maps.Size(mapIcons.education.scaledSize.width, mapIcons.education.scaledSize.height),
+      anchor: new (window as any).google.maps.Point(mapIcons.education.anchor.x, mapIcons.education.anchor.y)
     };
 
-    // Add markers with house icons
-    new (window as any).google.maps.Marker({
-      position: { lat: 57.466358598436514, lng: 9.803489716697532 },
-      map: map,
-      title: 'ishavsvej',
-      icon: houseIcon
-    });
+    // Create markers from data
+    mapMarkers.forEach((markerData: MarkerData) => {
+      const marker = new (window as any).google.maps.Marker({
+        position: markerData.position,
+        map: map,
+        title: markerData.title,
+        icon: markerData.type === 'house' ? houseIcon : educationIcon
+      });
 
-    new (window as any).google.maps.Marker({
-      position: { lat: 57.45280311473584, lng: 9.989951748854576 },
-      map: map,
-      title: 'kærparken',
-      icon: houseIcon
-    });
+      const infoWindow = new (window as any).google.maps.InfoWindow({
+        content: markerData.infoContent
+      });
 
-    new (window as any).google.maps.Marker({
-      position: { lat: 57.01925947426525, lng: 9.950380324970169 },
-      map: map,
-      title: 'scoresbysundvej',
-      icon: houseIcon
-    });
-
-    new (window as any).google.maps.Marker({
-      position: { lat: 56.19109362885152, lng: 9.55286008042207 },
-      map: map,
-      title: 'bredhøj',
-      icon: houseIcon
-    });
-
-    // Education marker
-    new (window as any).google.maps.Marker({
-      position: { lat: 57.46075238734557, lng: 9.869798523024473 },
-      map: map,
-      title: 'skallerup skole',
-      icon: educationIcon
-    });
-
-    // HPR marker
-    new (window as any).google.maps.Marker({
-      position: { lat: 57.456822380411, lng: 9.997013057952872 },
-      map: map,
-      title: 'HPR',
-      icon: educationIcon
-    });
-
-    // EUC Nord marker
-    new (window as any).google.maps.Marker({
-      position: { lat: 57.45854347143067, lng: 10.014588178479217 },
-      map: map,
-      title: 'EUC Nord',
-      icon: educationIcon
-    });
-
-    // AAU Basis marker
-    new (window as any).google.maps.Marker({
-      position: { lat: 57.053461265434066, lng: 9.91171798933991 },
-      map: map,
-      title: 'AAU Basis',
-      icon: educationIcon
-    });
-
-    // AAU Cassiopeia marker
-    new (window as any).google.maps.Marker({
-      position: { lat: 57.012339714420726, lng: 9.991050405703254 },
-      map: map,
-      title: 'AAU cassiopeia',
-      icon: educationIcon
+      marker.addListener('click', () => {
+        infoWindow.open(map, marker);
+      });
     });
   }
 </script>
