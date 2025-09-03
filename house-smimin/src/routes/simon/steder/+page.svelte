@@ -20,7 +20,7 @@
     if (typeof window === 'undefined') return;
     
     // Get API key from environment variable
-    const apiKey = "IzaSyBaazH8NdLU-7jqBbdswBLS03qC_mIY19c"; // import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    const apiKey = "AIzaSyBaazH8NdLU-7jqBbdswBLS03qC_mIY19c"; // import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     
     if (!apiKey) {
       // Show a placeholder map if no API key is provided
