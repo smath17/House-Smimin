@@ -215,32 +215,7 @@
   
   @media (max-width: 600px) {
     .main-nav {
-      flex-direction: column;
-      gap: 0.5rem;
-      padding: 1rem;
-    }
-    .main-nav a, .dropdown {
-      width: 100%;
-      text-align: center;
-    }
-    
-    .dropdown-content {
-      position: static;
-      display: none;
-      box-shadow: none;
-      border: none;
-      background-color: #f8f9fa;
-      margin-top: 1rem; /* Increased spacing for mobile to match desktop */
-      transform: none; /* Remove transform for mobile */
-      left: auto; /* Reset left positioning */
-      width: 100%; /* Full width on mobile */
-      min-width: auto; /* Reset min-width */
-      border-radius: 6px; /* Maintain border radius */
-      padding: 0.5rem 0; /* Maintain padding */
-    }
-    
-    .dropdown:hover .dropdown-content {
-      display: block;
+      display: none !important;
     }
   }
 </style>
