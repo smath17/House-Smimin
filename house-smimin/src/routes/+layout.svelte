@@ -261,7 +261,6 @@
       </div>
     </div>
     <a href="/projekter" class:active={page.url.pathname === '/projekter'}>Projekter</a>
-    <a href="/404" class:active={page.url.pathname === '/404'}>4̷̮͉̔̏͜͠0̸̱̆͊̓̎͌͌͊̚4̸̡͍͍̝̰͔̣̿̋̅̃̐̈̓̑</a>
     <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
