@@ -7,6 +7,7 @@
   let darkModeActive = $state(false);
   let mouseX = $state(0);
   let mouseY = $state(0);
+  let mobileMenuOpen = $state(false);
   let audio: HTMLAudioElement | null = null;
 
   function toggleDarkMode() {
@@ -17,217 +18,338 @@
       document.documentElement.removeAttribute('data-theme');
     }
 
-    // Play sound
     if (audio) {
-      audio.currentTime = 0; // Rewind to start if playing again
+      audio.currentTime = 0;
       audio.play().catch(error => console.error("Error playing sound:", error));
     }
   }
 
-	function handleMouseMove(event: MouseEvent) {
-		mouseX = event.clientX;
-		mouseY = event.clientY;
-	}
+  function toggleMobileMenu() {
+    mobileMenuOpen = !mobileMenuOpen;
+  }
 
-	onMount(() => {
-		if (typeof window !== 'undefined') {
-			window.addEventListener('mousemove', handleMouseMove);
-			
-			if (typeof Audio !== "undefined") {
-				audio = new Audio('/sounds/light-switch.mp3');
-				audio.load(); // Some browsers might need this to explicitly start loading
-			}
+  function handleMouseMove(event: MouseEvent) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  }
 
-			return () => {
-				window.removeEventListener('mousemove', handleMouseMove);
-			};
-		}
-	});
+  onMount(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('mousemove', handleMouseMove);
+      
+      if (typeof Audio !== "undefined") {
+        audio = new Audio('/sounds/light-switch.mp3');
+        audio.load();
+      }
+
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+      };
+    }
+  });
 </script>
 
-<!-- svelte-ignore css_unused_selector -->
 <style>
-  @import '../app.css';
-
-  .layout-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  .layout-grid {
+    display: grid;
+    grid-template-rows: 1fr;
     min-height: 100dvh;
-    background-color: #e0e0e0; /* Simple light concrete gray for general background */
-  }
-
-  .main-nav {
-    width: 100%;
-    background-color: #f8f9fa; /* Standard light background for nav */
-    /* background-image, border-bottom removed */
-    padding: 0.75rem 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    position: relative; /* Ensure nav is on top of layout background */
-    z-index: 10; 
-  }
-
-  .main-nav a {
-    text-decoration: none;
-    color: #0a66c2; /* Original link color */
-    font-weight: 500;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    background-color: #e0e0e0;
     position: relative;
-  }
-
-  .main-nav a:hover,
-  .main-nav a.active {
-    background-color: #0a66c2; 
-    color: white;
-  }
-
-  /* Dropdown container */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  /* Create invisible bridge between menu item and dropdown */
-  .dropdown::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    height: 1rem; /* Same as the gap */
-    background: transparent;
-    z-index: 999;
-  }
-
-  /* Dropdown content */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    top: calc(100% + 1rem); /* Increased vertical spacing from 0.5rem to 1rem */
-    left: 50%;
-    transform: translateX(-50%); /* Center the dropdown horizontally */
-    background-color: white;
-    min-width: 100px;
-    width: auto; /* Changed from max-content to auto for better control */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Enhanced shadow for better depth */
-    border-radius: 6px; /* Slightly larger border radius */
-    z-index: 1000;
-    border: 1px solid #ddd;
-    padding: 0.25px 0; /* Add some padding to the container */
-  }
-
-  /* Show dropdown on hover */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-  /* Dropdown links */
-  .dropdown-content a {
-    color: #0a66c2;
-    padding: 0.5rem 0.75rem; /* Reduced padding for less whitespace */
-    text-decoration: none;
-    display: block;
-    font-weight: 500;
-    border-radius: 0;
-    transition: background-color 0.2s ease;
-    white-space: nowrap; /* Prevent text wrapping */
-    text-align: center; /* Center the text */
-  }
-
-  /* Hover effect for dropdown items */
-  .dropdown-content a:hover {
-    background-color: #f8f9fa;
-    color: #0a66c2;
-  }
-
-  /* First and last item border radius */
-  .dropdown-content a:first-child {
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-  }
-
-  .dropdown-content a:last-child {
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-  }
-
-  /* Base style for the dark mode button */
-  .main-nav button {
-    background-color: #f8f9fa; /* Match nav background */
-    color: #0a66c2; /* Link color */
-    border: 1px solid #0a66c2; /* Border to differentiate */
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  }
-
-  /* Hover style for the button when not active */
-  .main-nav button:not(.active):hover {
-    background-color: #e9ecef; /* Slightly darker nav background */
-    color: #0056b3; /* Darker blue */
-    border-color: #0056b3;
-  }
-
-  /* Style for the button when dark mode is active */
-  .main-nav button.active {
-    background-color: #0a66c2; /* Highlighted background */
-    color: white;
-    border-color: #0a66c2;
-  }
-
-  /* Hover style for the button when active */
-  .main-nav button.active:hover {
-    background-color: #0855a0; /* Darker highlighted background */
-    border-color: #0855a0;
   }
 
   .content-area {
-    flex-grow: 1;
-    width: 100%;
-    /* Padding/margins for content will be handled by individual pages or a nested layout */
-    /* If content areas should have a different background (e.g., white cards), 
-       that should be styled within the page components or here if globally desired. */
+    padding: 1rem;
+    overflow-y: auto;
   }
 
+  /* Mobile Menu Button - Half Circle */
+  .mobile-menu-button {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 40px;
+    background-color: #0a66c2;
+    border: none;
+    border-radius: 40px 40px 0 0;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+  }
+
+  .mobile-menu-button:hover {
+    background-color: #0855a0;
+  }
+
+  .mobile-menu-button.active {
+    background-color: #28a745;
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    padding: 2rem 1rem 6rem 1rem;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .mobile-nav.open {
+    transform: translateY(0);
+  }
+
+  .mobile-nav-content {
+    display: grid;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .mobile-nav a {
+    text-decoration: none;
+    color: #0a66c2;
+    font-weight: 500;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: all 0.2s ease;
+    display: block;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
+    background-color: #0a66c2;
+    color: white;
+  }
+
+  .mobile-nav button {
+    background-color: #f8f9fa;
+    color: #0a66c2;
+    border: 2px solid #0a66c2;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+  }
+
+  .mobile-nav button:hover {
+    background-color: #e9ecef;
+  }
+
+  .mobile-nav button.active {
+    background-color: #0a66c2;
+    color: white;
+  }
+
+  .dropdown-section {
+    display: grid;
+    gap: 0.5rem;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .dropdown-title {
+    font-weight: 600;
+    color: #0a66c2;
+    margin-bottom: 0.5rem;
+  }
+
+  .dropdown-section a {
+    background-color: white;
+    margin: 0;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  /* Backdrop */
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9998;
+    cursor: pointer;
+  }
+
+  .mobile-menu-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Dark Mode Spotlight */
   .dark-mode-spotlight {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     background: radial-gradient(
       circle 150px at var(--mouseX) var(--mouseY),
-      transparent 0%, /* Percentage from circe center that is not affected by gradient */
+      transparent 0%,
       rgba(0, 0, 0, 0.95) 100%
     );
-    pointer-events: none; /* Allows clicks to pass through */
-    z-index: 9999; /* Ensure it's on top */
+    pointer-events: none;
+    z-index: 9998;
   }
-  
-  @media (max-width: 600px) {
-    .main-nav {
-      display: none !important;
+
+  /* Desktop Navigation */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Tablet and Desktop */
+  @media (min-width: 768px) {
+    .layout-grid {
+      grid-template-rows: auto 1fr;
+    }
+
+    .desktop-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      background-color: #f8f9fa;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+
+    .desktop-nav a {
+      text-decoration: none;
+      color: #0a66c2;
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
+      background-color: #0a66c2;
+      color: white;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 1rem;
+      background: transparent;
+      z-index: 999;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: calc(100% + 1rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: white;
+      min-width: 100px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 6px;
+      z-index: 1000;
+      border: 1px solid #ddd;
+      padding: 0.25rem 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #0a66c2;
+      padding: 0.5rem 0.75rem;
+      text-decoration: none;
+      display: block;
+      font-weight: 500;
+      border-radius: 0;
+      transition: background-color 0.2s ease;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f8f9fa;
+      color: #0a66c2;
+    }
+
+    .desktop-nav button {
+      background-color: #f8f9fa;
+      color: #0a66c2;
+      border: 1px solid #0a66c2;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .desktop-nav button:not(.active):hover {
+      background-color: #e9ecef;
+      color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .desktop-nav button.active {
+      background-color: #0a66c2;
+      color: white;
+      border-color: #0a66c2;
+    }
+
+    .desktop-nav button.active:hover {
+      background-color: #0855a0;
+      border-color: #0855a0;
+    }
+
+    .content-area {
+      padding: 2rem;
+    }
+
+    .mobile-menu-button,
+    .mobile-nav,
+    .mobile-menu-backdrop {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .content-area {
+      padding: 2rem 4rem;
     }
   }
 </style>
 
-<div class="layout-container" class:dark-mode={darkModeActive}>
+<div class="layout-grid" class:dark-mode={darkModeActive}>
   {#if darkModeActive}
     <div
       class="dark-mode-spotlight"
       style="--mouseX:{mouseX}px; --mouseY:{mouseY}px;"
     ></div>
   {/if}
-  <nav class="main-nav">
+
+  <!-- Desktop Navigation -->
+  <nav class="desktop-nav">
     <a href="/" class:active={page.url.pathname === '/'}>Hjem</a>
     <div class="dropdown">
       <a href="/simon" class:active={page.url.pathname === '/simon' || page.url.pathname.startsWith('/simon/')}>Simon</a>
@@ -240,7 +362,45 @@
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
   </nav>
+
+  <!-- Main Content Area -->
   <main class="content-area">
     {@render children()}
   </main>
+
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu-button" class:active={mobileMenuOpen} onclick={toggleMobileMenu}>
+    {mobileMenuOpen ? '✕' : '☰'}
+  </button>
+
+  <!-- Mobile Menu Backdrop -->
+  {#if mobileMenuOpen}
+    <div
+      class="mobile-menu-backdrop open"
+      onclick={toggleMobileMenu}
+      role="button"
+      tabindex="0"
+      aria-label="Luk mobilmenu"
+      onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMobileMenu(); } }}
+    ></div>
+  {/if}
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" class:open={mobileMenuOpen}>
+    <div class="mobile-nav-content">
+      <a href="/" class:active={page.url.pathname === '/'} onclick={toggleMobileMenu}>Hjem</a>
+      
+      <div class="dropdown-section">
+        <div class="dropdown-title">Simon</div>
+        <a href="/simon" class:active={page.url.pathname === '/simon'} onclick={toggleMobileMenu}>Oversigt</a>
+        <a href="/simon/steder" class:active={page.url.pathname === '/simon/steder'} onclick={toggleMobileMenu}>🗺️ Steder</a>
+      </div>
+      
+      <a href="/projekter" class:active={page.url.pathname === '/projekter'} onclick={toggleMobileMenu}>Projekter</a>
+      
+      <button onclick={toggleDarkMode} class:active={darkModeActive}>
+        {darkModeActive ? 'Light Mode' : 'Dark Mode'}
+      </button>
+    </div>
+  </nav>
 </div>
