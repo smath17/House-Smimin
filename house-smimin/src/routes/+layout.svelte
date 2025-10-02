@@ -116,8 +116,35 @@
 
   .mobile-nav-content {
     display: grid;
+    grid-template-rows: auto auto auto auto;
     gap: 1rem;
     text-align: center;
+  }
+
+  .dark-mode-row {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1rem;
+    font-size: 2.2rem;
+    justify-content: center;
+  }
+
+  .mobile-nav .dark-mode-row button,
+  .mobile-nav .dark-mode-row a {
+    aspect-ratio: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-nav .dark-mode-row button {
+    font-size: inherit !important;
+    padding: 0 !important;
+  }
+
+  .mobile-nav .dark-mode-row a {
+    padding: 0 !important;
   }
 
   .mobile-nav a {
@@ -156,27 +183,6 @@
   .mobile-nav button.active {
     background-color: #0a66c2;
     color: white;
-  }
-
-  .dropdown-section {
-    display: grid;
-    gap: 0.5rem;
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  .dropdown-title {
-    font-weight: 600;
-    color: #0a66c2;
-    margin-bottom: 0.5rem;
-  }
-
-  .dropdown-section a {
-    background-color: white;
-    margin: 0;
-    padding: 0.75rem;
-    font-size: 0.9rem;
   }
 
   /* Backdrop */
@@ -388,19 +394,22 @@
   <!-- Mobile Navigation -->
   <nav class="mobile-nav" class:open={mobileMenuOpen}>
     <div class="mobile-nav-content">
+      <!-- Row 1: Home -->
       <a href="/" class:active={page.url.pathname === '/'} onclick={toggleMobileMenu}>Hjem</a>
       
-      <div class="dropdown-section">
-        <div class="dropdown-title">Simon</div>
-        <a href="/simon" class:active={page.url.pathname === '/simon'} onclick={toggleMobileMenu}>Oversigt</a>
-        <a href="/simon/steder" class:active={page.url.pathname === '/simon/steder'} onclick={toggleMobileMenu}>🗺️ Steder</a>
-      </div>
+      <!-- Row 2: Simon Section -->
+      <a href="/simon" class:active={page.url.pathname === '/simon'} onclick={toggleMobileMenu}>Simon</a>
       
+      <!-- Row 3: Projects -->
       <a href="/projekter" class:active={page.url.pathname === '/projekter'} onclick={toggleMobileMenu}>Projekter</a>
       
-      <button onclick={toggleDarkMode} class:active={darkModeActive}>
-        {darkModeActive ? 'Light Mode' : 'Dark Mode'}
-      </button>
+      <!-- Row 4: Dark Mode (2 columns) -->
+      <div class="dark-mode-row">
+        <button onclick={toggleDarkMode} class:active={darkModeActive}>
+          <span>💡</span>
+        </button>
+        <a href="/simon/steder" class:active={page.url.pathname === '/simon/steder'} onclick={toggleMobileMenu}>🗺️</a>
+      </div>
     </div>
   </nav>
 </div>
