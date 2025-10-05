@@ -1,5 +1,3 @@
-
-
 <style>
   .main-grid {
     display: grid;
@@ -59,6 +57,20 @@
     height: auto;
     max-width: 100%;
     object-fit: cover;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    min-height: 300px; /* Prevents layout shift */
+  }
+  
+  .image.loaded {
+    background: none;
+    animation: none;
+  }
+  
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
   
   .image-credit {
@@ -99,6 +111,14 @@
   }
 </style>
 
+<script>
+  let imageLoaded = $state(false);
+  
+  function handleImageLoad() {
+    imageLoaded = true;
+  }
+</script>
+
 <div class="main-grid">
   <!-- Row 1: Title and Subtitle -->
   <div class="title-subtitle-section">
@@ -108,7 +128,15 @@
 
   <!-- Row 2: Image -->
   <div class="image-section">
-    <img class="image" src="images/simp.webp" alt="Simon bonk" />
+    <img 
+      class="image" 
+      class:loaded={imageLoaded}
+      src="images/simp.webp" 
+      alt="Simon bonk"
+      onload={handleImageLoad}
+      loading="eager"
+      decoding="async"
+    />
     <p class="image-credit">Image by Mikkel Mathiasen</p>
   </div>
 
