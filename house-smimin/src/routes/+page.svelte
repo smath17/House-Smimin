@@ -45,10 +45,15 @@
     margin: 0;
   }
   
+  .title.secondary {
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    margin: -0.75rem 0 0 0;
+  }
+  
   .subtitle {
     font-size: clamp(1rem, 2vw, 1.2rem);
     color: #555;
-    margin: 0;
+    margin: 1rem 0 0 0;
   }
   
   .image {
@@ -122,7 +127,8 @@
 <div class="main-grid">
   <!-- Row 1: Title and Subtitle -->
   <div class="title-subtitle-section">
-    <h1 class="title">Smimins Super Seje Side</h1>
+    <h1 class="title">Simon Mathiasen</h1>
+    <h2 class="title secondary">"Drypbakken"</h2>
     <div class="subtitle">Et værested til features ingen har bedt om, og samle tidligere projekter.</div>
   </div>
 
@@ -185,7 +191,7 @@
   <!-- Row 4: Contact Line -->
   <div class="contact-section">
     <footer class="footer">
-      &copy; {new Date().getFullYear()} Simon Mathiasen &ndash; Kontakt: <a href="mailto:smath@outlook.dk?subject=House%20of%20Smimin">smath@outlook.dk</a>
+      &copy; {new Date().getFullYear()} Simon Mathiasen
     </footer>
   </div>
 </div>
