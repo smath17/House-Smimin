@@ -123,7 +123,7 @@
 
   .dark-mode-row {
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(3, auto);
     gap: 1rem;
     font-size: 2.2rem;
     justify-content: center;
@@ -397,18 +397,16 @@
       <!-- Row 1: Home -->
       <a href="/" class:active={page.url.pathname === '/'} onclick={toggleMobileMenu}>Hjem</a>
       
-      <!-- Row 2: Simon Section -->
-      <a href="/simon" class:active={page.url.pathname === '/simon'} onclick={toggleMobileMenu}>Simon</a>
-      
       <!-- Row 3: Projects -->
       <a href="/projekter" class:active={page.url.pathname === '/projekter'} onclick={toggleMobileMenu}>Projekter</a>
       
-      <!-- Row 4: Dark Mode (2 columns) -->
+      <!-- Row 4: Dark Mode (3 columns) -->
       <div class="dark-mode-row">
         <button onclick={toggleDarkMode} class:active={darkModeActive}>
           <span>💡</span>
         </button>
         <a href="/simon/steder" class:active={page.url.pathname === '/simon/steder'} onclick={toggleMobileMenu}>🗺️</a>
+        <a href="/simon" class:active={page.url.pathname === '/simon'} onclick={toggleMobileMenu}>🤓</a>
       </div>
     </div>
   </nav>
