@@ -54,7 +54,7 @@
     display: grid;
     grid-template-rows: 1fr;
     min-height: 100dvh;
-    background-color: #e0e0e0;
+    background-color: var(--secondary-cream);
     position: relative;
   }
 
@@ -71,7 +71,7 @@
     transform: translateX(-50%);
     width: 80px;
     height: 40px;
-    background-color: #0a66c2;
+    background-color: var(--primary-green);
     border: none;
     border-radius: 40px 40px 0 0;
     cursor: pointer;
@@ -79,18 +79,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text-light);
     font-size: 1.2rem;
     transition: background-color 0.3s ease;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
   }
 
   .mobile-menu-button:hover {
-    background-color: #0855a0;
+    background-color: var(--accent-red);
   }
 
   .mobile-menu-button.active {
-    background-color: #28a745;
+    background-color: var(--accent-red);
   }
 
   /* Mobile Navigation */
@@ -149,25 +149,25 @@
 
   .mobile-nav a {
     text-decoration: none;
-    color: #0a66c2;
+    color: var(--text-primary);
     font-weight: 500;
     padding: 1rem;
     border-radius: 8px;
-    background-color: #f8f9fa;
+    background-color: var(--secondary-cream);
     transition: all 0.2s ease;
     display: block;
   }
 
   .mobile-nav a:hover,
   .mobile-nav a.active {
-    background-color: #0a66c2;
-    color: white;
+    background-color: var(--primary-green);
+    color: var(--text-light);
   }
 
   .mobile-nav button {
-    background-color: #f8f9fa;
-    color: #0a66c2;
-    border: 2px solid #0a66c2;
+    background-color: var(--secondary-cream);
+    color: var(--text-primary);
+    border: 2px solid var(--primary-green);
     padding: 1rem;
     border-radius: 8px;
     cursor: pointer;
@@ -177,12 +177,13 @@
   }
 
   .mobile-nav button:hover {
-    background-color: #e9ecef;
+    background-color: var(--accent-orange);
+    color: var(--text-light);
   }
 
   .mobile-nav button.active {
-    background-color: #0a66c2;
-    color: white;
+    background-color: var(--primary-green);
+    color: var(--text-light);
   }
 
   /* Backdrop */
@@ -228,7 +229,7 @@
       justify-content: center;
       align-items: center;
       gap: 1rem;
-      background-color: #f8f9fa;
+      background-color: var(--primary-green);
       padding: 0.75rem 1rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       flex-wrap: wrap;
@@ -236,7 +237,7 @@
 
     .desktop-nav a {
       text-decoration: none;
-      color: #0a66c2;
+      color: var(--text-light);
       font-weight: 500;
       padding: 0.5rem 0.75rem;
       border-radius: 4px;
@@ -245,8 +246,8 @@
 
     .desktop-nav a:hover,
     .desktop-nav a.active {
-      background-color: #0a66c2;
-      color: white;
+      background-color: var(--accent-orange);
+      color: var(--text-primary);
     }
 
     .dropdown {
@@ -275,7 +276,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       border-radius: 6px;
       z-index: 1000;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       padding: 0.25rem 0;
     }
 
@@ -284,7 +285,7 @@
     }
 
     .dropdown-content a {
-      color: #0a66c2;
+      color: var(--text-primary);
       padding: 0.5rem 0.75rem;
       text-decoration: none;
       display: block;
@@ -296,14 +297,14 @@
     }
 
     .dropdown-content a:hover {
-      background-color: #f8f9fa;
-      color: #0a66c2;
+      background-color: var(--secondary-cream);
+      color: var(--text-primary);
     }
 
     .desktop-nav button {
-      background-color: #f8f9fa;
-      color: #0a66c2;
-      border: 1px solid #0a66c2;
+      background-color: transparent;
+      color: var(--text-light);
+      border: 1px solid var(--text-light);
       padding: 0.5rem 0.75rem;
       border-radius: 4px;
       cursor: pointer;
@@ -312,20 +313,20 @@
     }
 
     .desktop-nav button:not(.active):hover {
-      background-color: #e9ecef;
-      color: #0056b3;
-      border-color: #0056b3;
+      background-color: var(--secondary-cream);
+      color: var(--text-primary);
+      border-color: var(--secondary-cream);
     }
 
     .desktop-nav button.active {
-      background-color: #0a66c2;
-      color: white;
-      border-color: #0a66c2;
+      background-color: var(--accent-red);
+      color: var(--text-light);
+      border-color: var(--accent-red);
     }
 
     .desktop-nav button.active:hover {
-      background-color: #0855a0;
-      border-color: #0855a0;
+      background-color: var(--accent-red);
+      border-color: var(--accent-red);
     }
 
     .content-area {
