@@ -99,7 +99,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: white;
+    background-color: var(--secondary-cream);
     transform: translateY(100%);
     transition: transform 0.3s ease;
     z-index: 9999;
@@ -156,9 +156,14 @@
     background-color: var(--secondary-cream);
     transition: all 0.2s ease;
     display: block;
+    border: 2px solid var(--primary-green);
   }
 
-  .mobile-nav a:hover,
+  .mobile-nav a:hover {
+    background-color: var(--accent-orange);
+    color: var(--text-light);
+  }
+
   .mobile-nav a.active {
     background-color: var(--primary-green);
     color: var(--text-light);
