@@ -370,6 +370,7 @@
       </div>
     </div>
     <a href="/projekter" class:active={page.url.pathname === '/projekter'}>Projekter</a>
+    <a href="/2026" class:active={page.url.pathname === '/2026'}>2026</a>
     <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
@@ -403,8 +404,11 @@
       <!-- Row 1: Home -->
       <a href="/" class:active={page.url.pathname === '/'} onclick={toggleMobileMenu}>Hjem</a>
       
-      <!-- Row 3: Projects -->
+      <!-- Row 2: Projects -->
       <a href="/projekter" class:active={page.url.pathname === '/projekter'} onclick={toggleMobileMenu}>Projekter</a>
+      
+      <!-- Row 3: 2026 -->
+      <a href="/2026" class:active={page.url.pathname === '/2026'} onclick={toggleMobileMenu}>2026</a>
       
       <!-- Row 4: Dark Mode (3 columns) -->
       <div class="dark-mode-row">
