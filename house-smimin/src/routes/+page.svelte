@@ -1,5 +1,3 @@
-
-
 <style>
   .main-grid {
     display: grid;
@@ -47,10 +45,15 @@
     margin: 0;
   }
   
+  .title.secondary {
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    margin: -0.75rem 0 0 0;
+  }
+  
   .subtitle {
     font-size: clamp(1rem, 2vw, 1.2rem);
     color: #555;
-    margin: 0;
+    margin: 1rem 0 0 0;
   }
   
   .image {
@@ -59,6 +62,20 @@
     height: auto;
     max-width: 100%;
     object-fit: cover;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    min-height: 300px; /* Prevents layout shift */
+  }
+  
+  .image.loaded {
+    background: none;
+    animation: none;
+  }
+  
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
   
   .image-credit {
@@ -99,16 +116,33 @@
   }
 </style>
 
+<script>
+  let imageLoaded = $state(false);
+  
+  function handleImageLoad() {
+    imageLoaded = true;
+  }
+</script>
+
 <div class="main-grid">
   <!-- Row 1: Title and Subtitle -->
   <div class="title-subtitle-section">
-    <h1 class="title">Smimins Super Seje Side</h1>
+    <h1 class="title">Simon Mathiasen</h1>
+    <h2 class="title secondary">"Drypbakken"</h2>
     <div class="subtitle">Et værested til features ingen har bedt om, og samle tidligere projekter.</div>
   </div>
 
   <!-- Row 2: Image -->
   <div class="image-section">
-    <img class="image" src="images/simp.webp" alt="Simon bonk" />
+    <img 
+      class="image" 
+      class:loaded={imageLoaded}
+      src="images/simp.webp" 
+      alt="Simon bonk"
+      onload={handleImageLoad}
+      loading="eager"
+      decoding="async"
+    />
     <p class="image-credit">Image by Mikkel Mathiasen</p>
   </div>
 
@@ -151,13 +185,27 @@
             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
           </svg>
         </a>
+        <a href="https://www.instagram.com/smath.dk/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="url(#instagram-gradient)" aria-hidden="true">
+            <defs>
+              <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#FED373;stop-opacity:1" />
+                <stop offset="25%" style="stop-color:#F15245;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#D92E7F;stop-opacity:1" />
+                <stop offset="75%" style="stop-color:#9B36B7;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#515ECF;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
       </div>
     </div>
 
   <!-- Row 4: Contact Line -->
   <div class="contact-section">
     <footer class="footer">
-      &copy; {new Date().getFullYear()} Simon Mathiasen &ndash; Kontakt: <a href="mailto:smath@outlook.dk?subject=House%20of%20Smimin">smath@outlook.dk</a>
+      &copy; {new Date().getFullYear()} Simon Mathiasen
     </footer>
   </div>
 </div>

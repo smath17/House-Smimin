@@ -1,5 +1,21 @@
 @import 'tailwindcss';
 
+/* Color Palette Variables */
+:root {
+  --primary-green: #84994F;    /* Most used - primary backgrounds, active states */
+  --secondary-cream: #FFF0DC;  /* Secondary - light backgrounds, hover states */
+  --accent-orange: #FCB53B;    /* Accent - highlights, focus states */
+  --accent-red: #B45253;       /* Least used - warnings, special elements */
+  
+  /* Semantic color mappings */
+  --bg-primary: var(--primary-green);
+  --bg-secondary: var(--secondary-cream);
+  --bg-light: #f8f9fa;
+  --text-primary: #333;
+  --text-light: #fff;
+  --border-color: var(--primary-green);
+}
+
 :global(html) {
     overflow-y: scroll; /* Fallback for older browsers or if content actually overflows */
     scrollbar-gutter: stable; /* Reserves space for the scrollbar gutter, preventing layout shifts */
