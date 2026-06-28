@@ -1,5 +1,6 @@
 <script lang="ts">
   import '../app.css';
+  import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import { onMount } from 'svelte';
 
@@ -116,7 +117,7 @@
 
   .mobile-nav-content {
     display: grid;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: repeat(5, auto);
     gap: 1rem;
     text-align: center;
   }
@@ -362,15 +363,16 @@
 
   <!-- Desktop Navigation -->
   <nav class="desktop-nav">
-    <a href="/" class:active={page.url.pathname === '/'}>Hjem</a>
+    <a href={resolve('/')} class:active={page.url.pathname === '/'}>Hjem</a>
     <div class="dropdown">
-      <a href="/simon" class:active={page.url.pathname === '/simon' || page.url.pathname.startsWith('/simon/')}>Simon</a>
+      <a href={resolve('/simon')} class:active={page.url.pathname === '/simon' || page.url.pathname.startsWith('/simon/')}>Simon</a>
       <div class="dropdown-content">
-        <a href="/simon/steder">🗺️ Steder</a>
+        <a href={resolve('/simon/steder')}>🗺️ Steder</a>
       </div>
     </div>
-    <a href="/projekter" class:active={page.url.pathname === '/projekter'}>Projekter</a>
-    <a href="/2026" class:active={page.url.pathname === '/2026'}>2026</a>
+    <a href={resolve('/projekter')} class:active={page.url.pathname === '/projekter'}>Projekter</a>
+    <a href={resolve('/recipes')} class:active={page.url.pathname === '/recipes' || page.url.pathname.startsWith('/recipes/')}>Opskrifter</a>
+    <a href={resolve('/2026')} class:active={page.url.pathname === '/2026'}>2026</a>
     <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
     </button>
@@ -402,21 +404,24 @@
   <nav class="mobile-nav" class:open={mobileMenuOpen}>
     <div class="mobile-nav-content">
       <!-- Row 1: Home -->
-      <a href="/" class:active={page.url.pathname === '/'} onclick={toggleMobileMenu}>Hjem</a>
+      <a href={resolve('/')} class:active={page.url.pathname === '/'} onclick={toggleMobileMenu}>Hjem</a>
       
       <!-- Row 2: Projects -->
-      <a href="/projekter" class:active={page.url.pathname === '/projekter'} onclick={toggleMobileMenu}>Projekter</a>
+      <a href={resolve('/projekter')} class:active={page.url.pathname === '/projekter'} onclick={toggleMobileMenu}>Projekter</a>
       
-      <!-- Row 3: 2026 -->
-      <a href="/2026" class:active={page.url.pathname === '/2026'} onclick={toggleMobileMenu}>2026</a>
+      <!-- Row 3: Recipes -->
+      <a href={resolve('/recipes')} class:active={page.url.pathname === '/recipes' || page.url.pathname.startsWith('/recipes/')} onclick={toggleMobileMenu}>Opskrifter</a>
       
-      <!-- Row 4: Dark Mode (3 columns) -->
+      <!-- Row 4: 2026 -->
+      <a href={resolve('/2026')} class:active={page.url.pathname === '/2026'} onclick={toggleMobileMenu}>2026</a>
+      
+      <!-- Row 5: Dark Mode (3 columns) -->
       <div class="dark-mode-row">
         <button onclick={toggleDarkMode} class:active={darkModeActive}>
           <span>💡</span>
         </button>
-        <a href="/simon/steder" class:active={page.url.pathname === '/simon/steder'} onclick={toggleMobileMenu}>🗺️</a>
-        <a href="/simon" class:active={page.url.pathname === '/simon'} onclick={toggleMobileMenu}>🤓</a>
+        <a href={resolve('/simon/steder')} class:active={page.url.pathname === '/simon/steder'} onclick={toggleMobileMenu}>🗺️</a>
+        <a href={resolve('/simon')} class:active={page.url.pathname === '/simon'} onclick={toggleMobileMenu}>🤓</a>
       </div>
     </div>
   </nav>
