@@ -1,3 +1,7 @@
+﻿<script>
+  import './+page.css';
+</script>
+
 <div class="simon-container">
   <div class="character-section">
     <img 
@@ -28,96 +32,3 @@
     </h2>
   </div>
 </div>
-
-<style>
-  .simon-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 1rem;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .character-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    flex-shrink: 1;
-  }
-
-  .sketchmon-image {
-    width: min(350px, 40vw);
-    height: auto;
-    display: block;
-    max-width: 100%;
-  }
-
-  .speech-bubble {
-    position: relative;
-    background: white;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 0.5rem;
-    margin-left: -60px;
-    z-index: 1;
-    flex-shrink: 0;
-    max-width: min(300px, 50vw);
-  }
-
-  .bubble-tail-border {
-    position: absolute;
-    top: 70px;
-    left: -32px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 17px 30px 17px 0;
-    border-color: transparent black transparent transparent;
-  }
-
-  .bubble-tail-fill {
-    position: absolute;
-    top: 72px;
-    left: -30px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 15px 28px 15px 0;
-    border-color: transparent white transparent transparent;
-  }
-
-  .question {
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
-    color: #333;
-  }
-
-  @media (max-width: 600px) {
-    .simon-container {
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .sketchmon-image {
-      width: min(280px, 70vw);
-    }
-
-    .speech-bubble {
-      margin-left: 0;
-      max-width: 90vw;
-    }
-
-    .bubble-tail-border,
-    .bubble-tail-fill {
-      display: none;
-    }
-
-    .question {
-      font-size: 1rem;
-    }
-  }
-</style>
