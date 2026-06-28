@@ -11,11 +11,24 @@ export interface Recipe {
 	prepTime: string;
 	bakeTime: string;
 	yield: string;
-	difficulty: 'Nem' | 'Mellem';
+	difficulty: RecipeDifficulty;
 	tags: string[];
 	ingredients: RecipeSection[];
 	steps: string[];
 	tips: string[];
+}
+
+export type RecipeDifficulty = 'Nem' | 'Mellem';
+
+export interface RecipeSummary {
+	id: string;
+	title: string;
+	description: string;
+	prepTime: string;
+	bakeTime: string;
+	yield: string;
+	difficulty: RecipeDifficulty;
+	tags: string[];
 }
 
 export const recipes: Recipe[] = [
@@ -112,3 +125,20 @@ function validateUniqueIds(items: Array<{ id: string }>): void {
 }
 
 validateUniqueIds(recipes);
+
+export function getRecipeById(recipeId: string): Recipe | undefined {
+	return recipes.find((recipe) => recipe.id === recipeId);
+}
+
+export function getRecipeSummaries(): RecipeSummary[] {
+	return recipes.map((recipe) => ({
+		id: recipe.id,
+		title: recipe.title,
+		description: recipe.description,
+		prepTime: recipe.prepTime,
+		bakeTime: recipe.bakeTime,
+		yield: recipe.yield,
+		difficulty: recipe.difficulty,
+		tags: recipe.tags
+	}));
+}

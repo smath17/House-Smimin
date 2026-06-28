@@ -30,6 +30,32 @@
 		line-height: 1.6;
 	}
 
+	.toolbar {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 1.5rem;
+	}
+
+	.sort-form {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+
+	.sort-form label {
+		font-weight: 600;
+	}
+
+	.sort-form select {
+		border: 1px solid rgba(132, 153, 79, 0.35);
+		border-radius: 12px;
+		padding: 0.7rem 0.9rem;
+		background: white;
+		color: var(--text-primary);
+		font: inherit;
+	}
+
 	.recipe-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -127,6 +153,23 @@
 		<h1>Opskrifter</h1>
 		<p>Et lille bagehjørne med opskrifter, der passer godt til en portefølje med lidt for mange side quests.</p>
 	</section>
+
+	<div class="toolbar">
+		<form class="sort-form" method="GET">
+			<label for="sort">Sorter efter</label>
+			<select
+				id="sort"
+				name="sort"
+				value={data.sort}
+				onchange={(event) => {
+					event.currentTarget.form?.requestSubmit();
+				}}
+			>
+				<option value="title">Titel</option>
+				<option value="difficulty">Sværhedsgrad</option>
+			</select>
+		</form>
+	</div>
 
 	<div class="recipe-grid">
 		{#each data.recipes as recipe (recipe.id)}

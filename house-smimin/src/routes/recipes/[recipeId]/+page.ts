@@ -1,9 +1,9 @@
 import { error } from '@sveltejs/kit';
 
-import { recipes } from '../data';
+import { getRecipeById } from '../data';
 
 export const load = ({ params }) => {
-	const recipe = recipes.find((item) => item.id === params.recipeId);
+	const recipe = getRecipeById(params.recipeId);
 
 	if (!recipe) {
 		throw error(404, 'Opskrift ikke fundet');
