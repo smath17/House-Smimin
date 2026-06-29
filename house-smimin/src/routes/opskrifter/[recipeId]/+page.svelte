@@ -15,20 +15,12 @@
 
 			<div class="meta">
 				<article>
-					<span>Forberedelse</span>
-					{data.recipe.prepTime}
-				</article>
-				<article>
-					<span>Bagetid</span>
-					{data.recipe.bakeTime}
+					<span>Tid (bagning)</span>
+					{data.recipe.prepTime} ({data.recipe.bakeTime})
 				</article>
 				<article>
 					<span>Sværhedsgrad</span>
 					{data.recipe.difficulty}
-				</article>
-				<article>
-					<span>Udbytte</span>
-					{data.recipe.yield}
 				</article>
 			</div>
 

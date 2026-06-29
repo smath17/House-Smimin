@@ -109,6 +109,68 @@ export const recipes: Recipe[] = [
 			'Afkøl helt før udskæring for de skarpeste firkanter.'
 		],
 		tips: ['Et drys flagesalt på toppen giver god kontrast.', 'Bag hellere et minut for lidt end for meget.']
+	},
+	{
+		id: 'bonnebrownie',
+		title: 'Bønnebrownie',
+		description: 'Mørk og klæbrig brownie lavet på sorte bønner – i to varianter med dadel eller proteinpulver.',
+		intro: 'Opskriften der beviser, at man sagtens kan bage med bønner uden at det smager af det.',
+		prepTime: '15 min',
+		bakeTime: '20-25 min',
+		yield: '~16 stykker',
+		difficulty: 'Nem',
+		tags: ['Chokolade', 'Sund', 'Proteinrig', 'Restebrug'],
+		ingredients: [
+			{
+				title: 'Bønnebrownie med dadel',
+				items: [
+					'1 dåse sorte bønner (230-250g drænet)',
+					'3 spsk kakaopulver',
+					'0,5 tsk instant kaffe (valgfri)',
+					'1-2 bananer',
+					'0,5 tsk salt',
+					'2 tsk vanilje (aroma/sukker)',
+					'1 tsk bagepulver',
+					'50-100g chokolade',
+					'2 æg',
+					'100g dadler (uden sten)',
+					'40-80g mel/havregryn'
+				]
+			},
+			{
+				title: 'Bønnebrownie med proteinpulver',
+				items: [
+					'1 dåse sorte bønner (230-250g drænet)',
+					'3 spsk kakaopulver',
+					'0,5 tsk instant kaffe (valgfri)',
+					'1-2 bananer',
+					'0,5 tsk salt',
+					'2 tsk vanilje (aroma/sukker)',
+					'1 tsk bagepulver',
+					'50-100g chokolade',
+					'2 æg',
+					'2 scoop proteinpulver (~70g)',
+					'80g havregryn',
+					'50g farin/sirup'
+				]
+			}
+		],
+		steps: [
+			'Tænd ovn på 180° over/undervarme.',
+			'Dræn bønner og skyl grundigt – snildt gjort med en si.',
+			'Hak chokolade groft – alt under 0,5 cm smelter under bagning.',
+			'Bland alle ingredienser (undtagen chokoladen) i en skål og blend til en ensartet masse uden spor af bønner eller dadler. Tørre ingredienser i bunden for at undgå mel-støv over det hele.',
+			'Smag på dejen – den skal ikke smage af bønner. Justér med sukker efter smag.',
+			'Virker dejen tynd? Tilsæt mere havregryn eller mel.',
+			'Vend den hakkede chokolade i.',
+			'Hæld dejen i formen (20x20 cm eller 30x10 cm).',
+			'Bag i 20-25 minutter. En tandstik må gerne have lidt dej på sig – brownies må ikke blive for tørre.'
+		],
+		tips: [
+			'Sæt i køler natten over – så bliver de mere faste.',
+			'Dekorer med topping inden bagning: nødder, kokos eller chokolade.',
+			'Opskriften er meget tilgivende med ingredienser – brug den til at rydde op i skabene.'
+		]
 	}
 ];
 

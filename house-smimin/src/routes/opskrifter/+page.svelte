@@ -50,20 +50,12 @@
 
 				<div class="meta">
 					<div class="meta-item">
-						<span class="meta-label">Forberedelse</span>
-						{recipe.prepTime}
-					</div>
-					<div class="meta-item">
-						<span class="meta-label">Bagetid</span>
-						{recipe.bakeTime}
+						<span class="meta-label">Tid (bagning)</span>
+						{recipe.prepTime} ({recipe.bakeTime})
 					</div>
 					<div class="meta-item">
 						<span class="meta-label">Sværhedsgrad</span>
 						{recipe.difficulty}
-					</div>
-					<div class="meta-item">
-						<span class="meta-label">Udbytte</span>
-						{recipe.yield}
 					</div>
 				</div>
 
