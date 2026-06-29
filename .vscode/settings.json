@@ -1,3 +1,6 @@
 {
-  "terminal.integrated.cwd": "${workspaceFolder}/house-smimin"
+  "terminal.integrated.cwd": "${workspaceFolder}/house-smimin",
+  "chat.tools.terminal.autoApprove": {
+    "Copy-Item": true
+  }
 }
