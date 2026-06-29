@@ -1,8 +1,23 @@
 ﻿<script lang="ts">
 	import './+page.css';
 	import { resolve } from '$app/paths';
+	import type { RecipeSummary } from './data';
+
+	const difficultyOrder: Record<RecipeSummary['difficulty'], number> = { Nem: 0, Mellem: 1 };
 
 	let { data } = $props();
+
+	let sort = $state<'title' | 'difficulty'>('title');
+	let order = $state<'asc' | 'desc'>('asc');
+
+	const sortedRecipes = $derived([...data.recipes].sort((a, b) => {
+		if (sort === 'difficulty') {
+			const diff = difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+			if (diff !== 0) return order === 'desc' ? -diff : diff;
+		}
+		const titleCompare = a.title.localeCompare(b.title, 'da');
+		return order === 'desc' ? -titleCompare : titleCompare;
+	}));
 </script>
 
 <div class="container">
@@ -12,24 +27,21 @@
 	</section>
 
 	<div class="toolbar">
-		<form class="sort-form" method="GET">
+		<div class="sort-form">
 			<label for="sort">Sorter efter</label>
-			<select
-				id="sort"
-				name="sort"
-				value={data.sort}
-				onchange={(event) => {
-					event.currentTarget.form?.requestSubmit();
-				}}
-			>
+			<select id="sort" bind:value={sort}>
 				<option value="title">Titel</option>
 				<option value="difficulty">Sværhedsgrad</option>
 			</select>
-		</form>
+			<select id="order" bind:value={order}>
+				<option value="asc">Stigende</option>
+				<option value="desc">Faldende</option>
+			</select>
+		</div>
 	</div>
 
 	<div class="recipe-grid">
-		{#each data.recipes as recipe (recipe.id)}
+		{#each sortedRecipes as recipe (recipe.id)}
 			<article class="recipe-card">
 				<div>
 					<h2>{recipe.title}</h2>
@@ -61,7 +73,7 @@
 					{/each}
 				</div>
 
-				<a class="recipe-link" href={resolve('/recipes/[recipeId]', { recipeId: recipe.id })}>
+				<a class="recipe-link" href={resolve('/opskrifter/[recipeId]', { recipeId: recipe.id })}>
 					Se opskrift
 				</a>
 			</article>

@@ -69,7 +69,7 @@
       </div>
     </div>
     <a href={resolve('/projekter')} class:active={page.url.pathname === '/projekter'}>Projekter</a>
-    <a href={resolve('/recipes')} class:active={page.url.pathname === '/recipes' || page.url.pathname.startsWith('/recipes/')}>Opskrifter</a>
+    <a href={resolve('/opskrifter')} class:active={page.url.pathname === '/opskrifter' || page.url.pathname.startsWith('/opskrifter/')}>Opskrifter</a>
     <a href={resolve('/2026')} class:active={page.url.pathname === '/2026'}>2026</a>
     <button onclick={toggleDarkMode} class:active={darkModeActive}>
       {darkModeActive ? 'Light Mode' : 'Dark Mode'}
@@ -108,7 +108,7 @@
       <a href={resolve('/projekter')} class:active={page.url.pathname === '/projekter'} onclick={toggleMobileMenu}>Projekter</a>
       
       <!-- Row 3: Recipes -->
-      <a href={resolve('/recipes')} class:active={page.url.pathname === '/recipes' || page.url.pathname.startsWith('/recipes/')} onclick={toggleMobileMenu}>Opskrifter</a>
+      <a href={resolve('/opskrifter')} class:active={page.url.pathname === '/opskrifter' || page.url.pathname.startsWith('/opskrifter/')} onclick={toggleMobileMenu}>Opskrifter</a>
       
       <!-- Row 4: 2026 -->
       <a href={resolve('/2026')} class:active={page.url.pathname === '/2026'} onclick={toggleMobileMenu}>2026</a>

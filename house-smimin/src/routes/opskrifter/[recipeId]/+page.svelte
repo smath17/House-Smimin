@@ -1,4 +1,4 @@
-﻿<script lang="ts">
+<script lang="ts">
 	import './+page.css';
 	import { resolve } from '$app/paths';
 
@@ -6,7 +6,7 @@
 </script>
 
 <div class="page">
-	<a class="back-link" href={resolve('/recipes')}>← Tilbage til opskrifter</a>
+	<a class="back-link" href={resolve('/opskrifter')}>← Tilbage til opskrifter</a>
 
 	<div class="recipe-shell">
 		<section class="hero">
